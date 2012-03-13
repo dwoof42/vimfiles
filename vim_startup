@@ -1,0 +1,276 @@
+" Always remember this file is sourced by both the unix and Win32 versions
+set nocompatible
+
+
+if has("gui_win32")
+	behave mswin
+	" I need to review these options to see what they mean
+	set vb t_vb=
+	set gfn=Consolas:h15:cANSI
+	set guioptions=gmc
+	set t_md=0
+	" see :help gui-win32=maximized
+	au GUIEnter * simalt ~x
+
+elseif has("gui")
+	behave xterm
+	set gfn=Inconsolata\ 17
+	winpos 0 0
+"	set lines=38
+	set columns=100
+	set lines=40
+"	set columns=99	
+endif
+"	set gfn=-b&h-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-iso8859-1
+"	set gfn=lucidasanstypewriter-18
+
+
+" no toolbar
+if has("gui")
+	set guioptions-=T
+endif
+
+if has("win32")
+	set directory=$HOME\vimfiles\backup,$TEMP
+	set backupdir=$HOME\vimfiles\backup,$TEMP
+endif
+	
+
+if has("unix")
+	set directory=$HOME/.vim/backup
+	set backupdir=$HOME/.vim/backup
+endif
+
+if has("mouse")
+	" Switch on search pattern highlighting.
+	set mousehide
+endif
+
+if has("menu")
+	menu &Other.Toggle&Gundo :GundoToggle<CR>
+endif
+
+" Hide the mouse pointer while typing
+
+if has("unix")
+	winpos 0 0
+"	set lines=38
+"	set columns=98
+	set lines=36
+	set columns=99	
+elseif has("win32")
+	" au GUIEnter * simalt ~x
+	" winpos 0 0
+	"set lines=34
+	"set columns=100
+" see :help gui-win32=maximized
+	au GUIEnter * simalt ~x
+endif
+	
+
+" always copy to the global clipboard
+if has("clipboard")
+	set clipboard+=unnamed
+endif
+
+" Make shift-insert work like in Xterm
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+
+" for gnome terminal et al
+if &term=="xterm"
+	if &t_Co==""
+	set term=xterm-color
+	endif
+endif
+
+set selectmode=mouse
+set backspace=2
+
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set autoindent
+set noexpandtab
+
+set showmatch
+" backups are for wimps :)
+" set nobackup
+" a bit contradictory here
+set visualbell
+set noerrorbells
+
+" set textwidth=70
+
+set showcmd
+
+" avoid the 'hit enter to continue messages
+set shm=ITta
+
+" cindent just annoys me
+set nocindent
+set noruler
+
+" things to ignore for file completion
+set wildignore=*.bak,~,*.o,*.info,*.swp,*.class
+
+
+" enable our plugins
+filetype plugin on
+augroup filetypedetect
+au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
+autocmd BufNewFile,BufRead *.vb set ft=vbnet
+autocmd BufNewFile,BufRead *.ps1 set ft=ps1
+au BufRead,BufNewFile *.xml.txt		set filetype=xml
+" Xaml
+au BufNewFile,BufRead *.xaml        setf xml
+
+augroup end
+
+augroup grammar
+au BufNewFile,BufRead,BufEnter *.grm	setf grm
+au BufNewFile,BufRead,BufEnter *.grm	set makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+au BufNewFile,BufRead,BufEnter *.grm	set shellpipe=
+au BufNewFile,BufRead,BufEnter *.grm	set makeef=%:r.log
+au BufNewFile,BufRead,BufEnter *.grm	set errorformat=%m
+
+augroup end
+
+" from vimrc_example
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+  " When editing a file, always jump to the last cursor position
+  "autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
+	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+endif
+
+" my additions to perl.vim for cgi files
+"if has("autocmd")
+	
+	" This is a mess with the new syn files until I fix it
+	"autocmd BufReadPost *.cgi so $HOME/vtools/perlhtml.vim
+	"#autocmd BufReadPost *.pm so  $HOME/vtools/perlhtml.vim
+"endif
+
+
+" let ctrl-k turn off search highliting, change to <leader>-k to avoid vsvim conflicts
+" use random string
+map <leader>k :silent noh<CR>
+
+" a cheap way to compile the current module
+nmap <leader>p :python -c "import %"<cr>
+
+
+" sf islike gf but in a new window 
+" FIXME: expand doesn't want to work here, but I should
+" make this handle variables 'n' such
+
+:map sf :sp <cfile><CR>
+
+" map the F1 key to escape in insert mode in case i hit it accidentally
+imap <F1> <Esc>
+
+" nmap \h :set ft=html<CR>
+" nmap \x :set ft=xml<CR>
+
+" and some simple mappings
+" nmap \t :echo strftime("%c", localtime())<CR>
+
+" and I often want to execute the current script
+map <leader>e :!./%<CR>
+
+"  listchars
+nmap <leader>l :set list!<CR>
+nmap <leader>n :NERDTree<CR>
+
+" set listchars=tab:?\ ,eol:¬
+set listchars=tab:>\ ,eol:¬
+
+
+
+" windows-ish keystrokes
+nmap <C-Y> <C-R>
+
+
+" Cd moves me to the directory of the current file
+com! Cd exec "cd " . expand("%:p:h")
+
+
+if has("autocmd")
+ augroup cprog
+  " Remove all cprog autocommands
+  au!
+
+  " When starting to edit a file:
+  "   For C and C++ files set formatting of comments and set C-indenting on.
+  "   For other files switch it off.
+  "   Don't change the order, it's important that the line with * comes first.
+  autocmd FileType *      set formatoptions=tcql nocindent comments&
+  autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
+ augroup END
+
+" au BufNewFile,BufEnter *.pl    set kp=perldoc\ -f
+" au BufNewFile,BufEnter *.cgi set kp=perldoc\ -f
+" au BufNewFile,BufEnter *.pm set kp=perldoc\ -f
+
+" au BufNewFile,BufEnter \\\\* :NoMatchParen
+endif
+
+" I like highlighting strings inside C comments
+let c_comment_strings=1
+
+" Switch on search pattern highlighting.
+set hlsearch
+
+
+" Hide the mouse pointer while typing
+set mousehide
+
+if has("unix")
+	winpos 0 0
+"	set lines=38
+"	set columns=98
+	set lines=36
+	set columns=99	
+elseif has("win32")
+	" au GUIEnter * simalt ~x
+	" winpos 0 0
+	"set lines=34
+	"set columns=100
+" see :help gui-win32=maximized
+	au GUIEnter * simalt ~x
+endif
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
+        \ &tabstop, &shiftwidth, &textwidth)
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+
+
+set viminfo=%,'50,\"100,n~/.viminfo
+
+
+" :source $VIMRUNTIME/macros/matchit.vim
+
+set incsearch
+
+" silent! colorscheme sonofobsidian
+" silent! colorscheme ragblue
+silent! colorscheme molokai
+syntax on
+
+" enable pathogen
+call pathogen#infect()
+
+
+" vim:set filetype=vim:ts=4 
+

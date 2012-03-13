@@ -186,8 +186,8 @@ map <leader>e :!./%<CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
 
-" set listchars=tab:?\ ,eol:¬
-set listchars=tab:>\ ,eol:¬
+" set listchars=tab:?\ ,eol:Â¬
+set listchars=tab:>\ ,eol:$
 
 
 
@@ -265,7 +265,8 @@ set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
-silent! colorscheme molokai
+" silent! colorscheme molokai
+silent! colorscheme desert
 syntax on
 
 " enable pathogen

@@ -126,7 +126,7 @@ autocmd BufNewFile,BufRead *.vb set ft=vbnet
 autocmd BufNewFile,BufRead *.ps1 set ft=ps1
 au BufRead,BufNewFile *.xml.txt		set filetype=xml
 " Xaml
-au BufNewFile,BufRead *.xaml        setf xml
+au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
 
 augroup end
 
@@ -187,8 +187,8 @@ map <leader>e :!./%<CR>
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
 
-" set listchars=tab:?\ ,eol:¬
-set listchars=tab:>\ ,eol:¬
+" set listchars=tab:?\ ,eol:Â¬
+set listchars=tab:>\ ,eol:$
 
 
 
@@ -267,6 +267,7 @@ set incsearch
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
 silent! colorscheme molokai
+" silent! colorscheme desert
 syntax on
 
 " enable pathogen

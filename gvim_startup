@@ -1,0 +1,66 @@
+" Always remember this file is sourced by both the unix and Win32 versions
+set nocompatible
+
+
+if has("gui_win32")
+	behave mswin
+	" I need to review these options to see what they mean
+	" set vb t_vb=
+	set gfn=Consolas:h15:cANSI
+	set guioptions=gmc
+	" set t_md=0
+	" see :help gui-win32=maximized
+	au GUIEnter * simalt ~x
+
+elseif has("gui")
+	behave xterm
+	set gfn=Inconsolata\ 17
+"	winpos 0 0
+"	set lines=38
+"	set columns=100
+"	au GUIEnter * simalt ~x
+endif
+
+
+" no toolbar
+if has("gui")
+	set guioptions-=T
+endif
+
+if has("mouse")
+	" Switch on search pattern highlighting.
+	set mousehide
+endif
+
+if has("menu")
+	menu &Other.Toggle&Gundo :GundoToggle<CR>
+endif
+
+" always copy to the global clipboard
+if has("clipboard")
+	set clipboard+=unnamed
+endif
+
+" Make shift-insert work like in Xterm
+
+map <S-Insert> <MiddleMouse>
+map! <S-Insert> <MiddleMouse>
+
+
+" for gnome terminal et al
+if &term=="xterm"
+	if &t_Co==""
+		set term=xterm-color256
+	endif
+endif
+
+set selectmode=mouse
+
+set visualbell
+set noerrorbells
+
+silent! colorscheme molokai
+syntax on
+
+" vim:set filetype=vim:ts=4 
+

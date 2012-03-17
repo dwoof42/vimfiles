@@ -2,34 +2,6 @@
 set nocompatible
 
 
-if has("gui_win32")
-	behave mswin
-	" I need to review these options to see what they mean
-	" set vb t_vb=
-	set gfn=Consolas:h15:cANSI
-	set guioptions=gmc
-	" set t_md=0
-	" see :help gui-win32=maximized
-	au GUIEnter * simalt ~x
-
-elseif has("gui")
-	behave xterm
-	set gfn=Inconsolata\ 17
-	winpos 0 0
-"	set lines=38
-	set columns=100
-	set lines=40
-"	set columns=99	
-endif
-"	set gfn=-b&h-lucidatypewriter-medium-r-normal-*-*-180-*-*-m-*-iso8859-1
-"	set gfn=lucidasanstypewriter-18
-
-
-" no toolbar
-if has("gui")
-	set guioptions-=T
-endif
-
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
@@ -41,48 +13,9 @@ if has("unix")
 	set backupdir=$HOME/.vim/backup
 endif
 
-if has("mouse")
-	" Switch on search pattern highlighting.
-	set mousehide
-endif
-
-if has("menu")
-	menu &Other.Toggle&Gundo :GundoToggle<CR>
-endif
-
-" Hide the mouse pointer while typing
-
-if has("unix")
-	winpos 0 0
-"	set lines=38
-"	set columns=98
-	set lines=36
-	set columns=99	
-elseif has("win32")
-	" au GUIEnter * simalt ~x
-	" winpos 0 0
-	"set lines=34
-	"set columns=100
-" see :help gui-win32=maximized
-	au GUIEnter * simalt ~x
-endif
-	
-
 " always copy to the global clipboard
 if has("clipboard")
 	set clipboard+=unnamed
-endif
-
-" Make shift-insert work like in Xterm
-map <S-Insert> <MiddleMouse>
-map! <S-Insert> <MiddleMouse>
-
-
-" for gnome terminal et al
-if &term=="xterm"
-	if &t_Co==""
-	set term=xterm-color
-	endif
 endif
 
 set selectmode=mouse
@@ -96,8 +29,7 @@ set autoindent
 set noexpandtab
 
 set showmatch
-" backups are for wimps :)
-" set nobackup
+
 " a bit contradictory here
 set visualbell
 set noerrorbells
@@ -148,15 +80,6 @@ if has("autocmd")
 
 endif
 
-" my additions to perl.vim for cgi files
-"if has("autocmd")
-	
-	" This is a mess with the new syn files until I fix it
-	"autocmd BufReadPost *.cgi so $HOME/vtools/perlhtml.vim
-	"#autocmd BufReadPost *.pm so  $HOME/vtools/perlhtml.vim
-"endif
-
-
 " let ctrl-k turn off search highliting, change to <leader>-k to avoid vsvim conflicts
 " use random string
 map <leader>k :silent noh<CR>
@@ -186,6 +109,7 @@ map <leader>e :!./%<CR>
 "  listchars
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
+nmap <leader>g :GundoToggle<CR>
 
 " set listchars=tab:?\ ,eol:Â¬
 set listchars=tab:>\ ,eol:$
@@ -230,21 +154,6 @@ set hlsearch
 " Hide the mouse pointer while typing
 set mousehide
 
-if has("unix")
-	winpos 0 0
-"	set lines=38
-"	set columns=98
-	set lines=36
-	set columns=99	
-elseif has("win32")
-	" au GUIEnter * simalt ~x
-	" winpos 0 0
-	"set lines=34
-	"set columns=100
-" see :help gui-win32=maximized
-	au GUIEnter * simalt ~x
-endif
-
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
@@ -259,6 +168,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 set viminfo=%,'50,\"100,n~/.viminfo
 
+call pathogen#infect()
 
 " :source $VIMRUNTIME/macros/matchit.vim
 
@@ -266,13 +176,11 @@ set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
-silent! colorscheme molokai
+colorscheme molokai
 " silent! colorscheme desert
 syntax on
 
 " enable pathogen
-call pathogen#infect()
-
 
 " vim:set filetype=vim:ts=4 
 

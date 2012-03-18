@@ -168,6 +168,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 set viminfo=%,'50,\"100,n~/.viminfo
 
+" enable pathogen
 call pathogen#infect()
 
 " :source $VIMRUNTIME/macros/matchit.vim
@@ -176,11 +177,11 @@ set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
-colorscheme molokai
+colorscheme molokailite
+
 " silent! colorscheme desert
 syntax on
 
-" enable pathogen
 
 " vim:set filetype=vim:ts=4 
 

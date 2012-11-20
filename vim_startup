@@ -1,16 +1,15 @@
 " Always remember this file is sourced by both the unix and Win32 versions
 set nocompatible
 
-
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
 endif
 	
-
 if has("unix")
 	set directory=$HOME/.vim/backup
 	set backupdir=$HOME/.vim/backup
+	let g:CSApprox_use_showrgb=1
 endif
 
 " always copy to the global clipboard
@@ -85,7 +84,7 @@ endif
 map <leader>k :silent noh<CR>
 
 " a cheap way to compile the current module
-nmap <leader>p :python -c "import %"<cr>
+" nmap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
@@ -109,12 +108,16 @@ map <leader>e :!./%<CR>
 "  listchars
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
+nmap <leader>b :NERDTree %:p<CR>
 nmap <leader>g :GundoToggle<CR>
+nmap <leader>t :TlistToggle<CR>
+set pastetoggle=<leader>p
+
+" Taglist 
+let Tlist_GainFocus_On_ToggleOpen = 1
 
 " set listchars=tab:?\ ,eol:Â¬
 set listchars=tab:>\ ,eol:$
-
-
 
 " windows-ish keystrokes
 nmap <C-Y> <C-R>

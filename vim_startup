@@ -17,6 +17,9 @@ if $TERM != "cygwin"
 	" let g:CSApprox_use_showrgb=1
 endif
 
+" for new installations, install vundle into the bundle dir 
+"git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
+
 call vundle#rc()
 
 Bundle 'gmarik/vundle'

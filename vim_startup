@@ -4,18 +4,34 @@ set nocompatible
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
+	set rtp+=$HOME\vimfiles\bundle\vundle
 endif
 	
 if has("unix")
 	set directory=$HOME/.vim/backup
 	set backupdir=$HOME/.vim/backup
-	let g:CSApprox_use_showrgb=1
+	set rtp+=$HOME/.vim/bundle/vundle/
 endif
 
-" always copy to the global clipboard
-if has("clipboard")
-	set clipboard+=unnamed
+if $TERM != "cygwin"
+	" let g:CSApprox_use_showrgb=1
 endif
+
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/mru.vim'
+Bundle 'bufexplorer.zip'
+
+
+" always copy to the global clipboard
+"if has("clipboard")
+"	set clipboard+=unnamed
+"endif
+
 
 set selectmode=mouse
 set backspace=2
@@ -104,6 +120,9 @@ imap <F1> <Esc>
 
 " and I often want to execute the current script
 map <leader>e :!./%<CR>
+
+
+
 
 "  listchars
 nmap <leader>l :set list!<CR>

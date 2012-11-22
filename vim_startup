@@ -191,7 +191,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 set viminfo=%,'50,\"100,n~/.viminfo
 
 " enable pathogen
-call pathogen#infect()
+" call pathogen#infect()
 
 " :source $VIMRUNTIME/macros/matchit.vim
 

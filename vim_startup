@@ -36,15 +36,45 @@ Bundle 'bufexplorer.zip'
 "endif
 
 
+" from vimcatsts, a script to change tab settings
+" Set tabstop, softtabstop and shiftwidth to the same value
+command! -nargs=* Stab call Stab()
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+  
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+
+
 set selectmode=mouse
-set backspace=2
+" set backspace=2
 
 set tabstop=4
 set shiftwidth=4
-set smarttab
 set softtabstop=4
+set smarttab
 set autoindent
-set noexpandtab
+set expandtab
 
 set showmatch
 
@@ -68,32 +98,33 @@ set noruler
 set wildignore=*.bak,~,*.o,*.info,*.swp,*.class
 
 
-" enable our plugins
-filetype plugin on
-augroup filetypedetect
-au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
-autocmd BufNewFile,BufRead *.vb set ft=vbnet
-autocmd BufNewFile,BufRead *.ps1 set ft=ps1
-au BufRead,BufNewFile *.xml.txt		set filetype=xml
-" Xaml
-au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
-
-augroup end
-
-augroup grammar
-au BufNewFile,BufRead,BufEnter *.grm	setf grm
-au BufNewFile,BufRead,BufEnter *.grm	set makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
-au BufNewFile,BufRead,BufEnter *.grm	set shellpipe=
-au BufNewFile,BufRead,BufEnter *.grm	set makeef=%:r.log
-au BufNewFile,BufRead,BufEnter *.grm	set errorformat=%m
-
-augroup end
-
 " from vimrc_example
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
   " When editing a file, always jump to the last cursor position
   "autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
+" enable our plugins
+    filetype plugin on
+    augroup filetypedetect
+    au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
+    autocmd BufNewFile,BufRead *.vb set ft=vbnet
+    autocmd BufNewFile,BufRead *.ps1 set ft=ps1
+    au BufRead,BufNewFile *.xml.txt		set filetype=xml
+    " Xaml
+    au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
+
+    augroup end
+
+    augroup grammar
+    au BufNewFile,BufRead,BufEnter *.grm	setf grm
+    au BufNewFile,BufRead,BufEnter *.grm	set makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+    au BufNewFile,BufRead,BufEnter *.grm	set shellpipe=
+    au BufNewFile,BufRead,BufEnter *.grm	set makeef=%:r.log
+    au BufNewFile,BufRead,BufEnter *.grm	set errorformat=%m
+
+augroup end
+
+    " I don't remember what this is
 	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 endif

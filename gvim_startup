@@ -15,6 +15,7 @@ if has("gui_win32")
 elseif has("gui")
 	behave xterm
 	set gfn=Inconsolata\ 17
+	set guioptions-=m
 "	winpos 0 0
 "	set lines=38
 "	set columns=100

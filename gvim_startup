@@ -22,6 +22,10 @@ elseif has("gui")
 "	au GUIEnter * simalt ~x
 endif
 
+nmap <leader>+m set guioptions+=m
+nmap <leader>-m set guioptions-=m
+
+
 
 " no toolbar
 if has("gui")

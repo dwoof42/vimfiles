@@ -74,7 +74,7 @@ set shiftwidth=4
 set softtabstop=4
 set smarttab
 set autoindent
-set expandtab
+set noexpandtab
 
 set showmatch
 
@@ -109,20 +109,19 @@ if has("autocmd")
     au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
     autocmd BufNewFile,BufRead *.vb set ft=vbnet
     autocmd BufNewFile,BufRead *.ps1 set ft=ps1
-    au BufRead,BufNewFile *.xml.txt		set filetype=xml
+    au BufRead,BufNewFile *.xml.txt		set filetype=xml 
     " Xaml
     au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
+
+    au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile   set ts=2 sts=2 sw=2 expandtab
+    au BufEnter,BufRead,BufNewFile *.py   set ts=4 sts=4 sw=4 expandtab
+    au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
 
     augroup end
 
     augroup grammar
-    au BufNewFile,BufRead,BufEnter *.grm	setf grm
-    au BufNewFile,BufRead,BufEnter *.grm	set makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
-    au BufNewFile,BufRead,BufEnter *.grm	set shellpipe=
-    au BufNewFile,BufRead,BufEnter *.grm	set makeef=%:r.log
-    au BufNewFile,BufRead,BufEnter *.grm	set errorformat=%m
-
-augroup end
+        au BufNewFile,BufRead,BufEnter *.grm	set ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+    augroup end
 
     " I don't remember what this is
 	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif

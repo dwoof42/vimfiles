@@ -19,6 +19,7 @@ endif
 
 " for new installations, install vundle into the bundle dir 
 "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
+" then to install or update call BundleInstall!  (with the bang)
 
 call vundle#rc()
 

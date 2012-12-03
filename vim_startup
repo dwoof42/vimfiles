@@ -155,6 +155,8 @@ imap <F1> <Esc>
 " and I often want to execute the current script
 map <leader>e :!./%<CR>
 
+" write as root, but leave the Load prompt after
+cmap w!! w !sudo tee % >/dev/null<CR>
 
 
 

@@ -1,6 +1,8 @@
 " Always remember this file is sourced by both the unix and Win32 versions
 set nocompatible
 
+set enc=utf-8
+
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
@@ -16,6 +18,8 @@ endif
 if $TERM != "cygwin"
 	" let g:CSApprox_use_showrgb=1
 endif
+
+
 
 " for new installations, install vundle into the bundle dir 
 "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
@@ -161,7 +165,6 @@ cmap w!! w !sudo tee % >/dev/null<CR>
 
 
 
-"  listchars
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
 nmap <leader>b :NERDTree %:p<CR>
@@ -241,7 +244,6 @@ colorscheme molokailite
 
 " silent! colorscheme desert
 syntax on
-
 
 " vim:set filetype=vim:ts=4 
 

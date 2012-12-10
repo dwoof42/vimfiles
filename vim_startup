@@ -33,6 +33,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
+Bundle 'groenewege/vim-less'
 
 
 " always copy to the global clipboard

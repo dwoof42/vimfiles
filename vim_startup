@@ -120,7 +120,7 @@ if has("autocmd")
     au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
 
     au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile   set ts=2 sts=2 sw=2 expandtab
-    au BufEnter,BufRead,BufNewFile *.py   set ts=4 sts=4 sw=4 expandtab
+    au BufEnter,BufRead,BufNewFile *.py,*.hs   set ts=4 sts=4 sw=4 expandtab
     au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
     au BufEnter,BufRead,BufNewFile *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 

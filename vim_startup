@@ -160,12 +160,14 @@ imap <F1> <Esc>
 
 " and I often want to execute the current script
 map <leader>e :!./%<CR>
+nmap <leader>x :!chmod +x %<cr><cr>
 
 " write as root, but leave the Load prompt after
 cmap w!! w !sudo tee % >/dev/null<CR>
 
 
 
+nmap <leader>c :!clear<cr><cr>
 nmap <leader>l :set list!<CR>
 nmap <leader>n :NERDTree<CR>
 nmap <leader>b :NERDTree %:p<CR>

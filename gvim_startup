@@ -64,7 +64,6 @@ set selectmode=mouse
 set visualbell
 set noerrorbells
 
-colorscheme molokailite
 syntax on
 
 " vim:set filetype=vim:ts=4 

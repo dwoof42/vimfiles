@@ -16,7 +16,8 @@ if has("unix")
 endif
 
 if $TERM != "cygwin"
-	" let g:CSApprox_use_showrgb=1
+"	let g:CSApprox_use_showrgb=1
+"	let g:CSApprox_verbose_level=5
 endif
 
 
@@ -243,7 +244,7 @@ set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
-colorscheme molokailite
+colorscheme mymolokai
 
 " silent! colorscheme desert
 syntax on

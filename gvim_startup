@@ -2,28 +2,30 @@
 set nocompatible
 
 
+set guioptions=c
+
 if has("gui_win32")
 	behave mswin
 	au GUIEnter * simalt ~x
 	" I need to review these options to see what they mean
 	" set vb t_vb=
 	set gfn=Consolas:h16:cANSI
-	set guioptions=gmc
+	" set guioptions=gmc
 	" set t_md=0
 	" see :help gui-win32=maximized
 
 elseif has("gui")
 	behave xterm
 	set gfn=Inconsolata\ 17
-	set guioptions-=m
+	" set guioptions-=m
 "	winpos 0 0
 "	set lines=38
 "	set columns=100
 "	au GUIEnter * simalt ~x
 endif
 
-nmap <leader>+m set guioptions+=m
-nmap <leader>-m set guioptions-=m
+nmap <leader>+m :set guioptions+=m<cr>
+nmap <leader>-m :set guioptions-=m<cr>
 
 
 
@@ -37,14 +39,11 @@ if has("mouse")
 	set mousehide
 endif
 
-if has("menu")
-	menu &Other.Toggle&Gundo :GundoToggle<CR>
-endif
 
 " always copy to the global clipboard
-if has("clipboard")
-	set clipboard+=unnamed
-endif
+"if has("clipboard")
+"	set clipboard+=unnamed
+"endif
 
 " Make shift-insert work like in Xterm
 

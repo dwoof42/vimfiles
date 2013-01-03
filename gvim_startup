@@ -10,14 +10,14 @@ if has("gui_win32")
 	" I need to review these options to see what they mean
 	" set vb t_vb=
 	set gfn=Consolas:h16:cANSI
-	" set guioptions=gmc
+	set guioptions=gmcet
 	" set t_md=0
 	" see :help gui-win32=maximized
 
 elseif has("gui")
 	behave xterm
 	set gfn=Inconsolata\ 17
-	" set guioptions-=m
+	set guioptions=gce
 "	winpos 0 0
 "	set lines=38
 "	set columns=100
@@ -29,10 +29,6 @@ nmap <leader>-m :set guioptions-=m<cr>
 
 
 
-" no toolbar
-if has("gui")
-	set guioptions-=T
-endif
 
 if has("mouse")
 	" Switch on search pattern highlighting.

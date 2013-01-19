@@ -34,8 +34,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
-Bundle 'groenewege/vim-less'
 Bundle 'sjl/gundo.vim'
+Bundle 'groenewege/vim-less'
+Bundle 'halletj/jslint.vim'
 
 
 " always copy to the global clipboard
@@ -126,6 +127,8 @@ if has("autocmd")
     au BufEnter,BufRead,BufNewFile *.py,*.hs   set ts=4 sts=4 sw=4 expandtab
     au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
     au BufEnter,BufRead,BufNewFile *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
+
+	au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -ci\ -utf8
 
     augroup end
 

@@ -36,7 +36,7 @@ Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'groenewege/vim-less'
 Bundle 'sjl/gundo.vim'
-
+Bundle 'vim-scripts/aspnetcs.git'
 
 " always copy to the global clipboard
 "if has("clipboard")

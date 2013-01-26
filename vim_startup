@@ -255,5 +255,8 @@ colorscheme mymolokai
 " silent! colorscheme desert
 syntax on
 
+" i'm going to work like this for a while
+set number
+
 " vim:set filetype=vim:ts=4 
 

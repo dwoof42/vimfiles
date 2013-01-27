@@ -128,7 +128,7 @@ if has("autocmd")
     au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
     au BufEnter,BufRead,BufNewFile *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 
-	au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -ci\ -utf8
+	" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
     augroup end
 
@@ -222,6 +222,7 @@ let c_comment_strings=1
 " Switch on search pattern highlighting.
 set hlsearch
 
+filetype plugin indent on
 
 " Hide the mouse pointer while typing
 set mousehide
@@ -253,6 +254,9 @@ colorscheme mymolokai
 
 " silent! colorscheme desert
 syntax on
+
+" i'm going to work like this for a while
+set number
 
 " vim:set filetype=vim:ts=4 
 

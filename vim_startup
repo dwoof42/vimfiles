@@ -30,7 +30,6 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'dwoof42/vim-fugitive'
-" Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
@@ -178,8 +177,6 @@ cmap w!! w !sudo tee % >/dev/null<CR>
 
 nmap <leader>c :!clear<cr><cr>
 nmap <leader>l :set list!<CR>
-" nmap <leader>n :NERDTree<CR>
-" nmap <leader>b :NERDTree %:p<CR>
 nmap <leader>g :GundoToggle<CR>
 nmap <leader>t :TlistToggle<CR>
 set pastetoggle=<leader>p

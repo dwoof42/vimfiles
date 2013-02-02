@@ -40,6 +40,7 @@ if has("unix")
 	Bundle 'hallettj/jslint.vim'
 endif
 
+Bundle 'walm/jshint.vim'
 
 " always copy to the global clipboard
 "if has("clipboard")
@@ -177,8 +178,12 @@ cmap w!! w !sudo tee % >/dev/null<CR>
 
 nmap <leader>c :!clear<cr><cr>
 nmap <leader>l :set list!<CR>
+
 nmap <leader>g :GundoToggle<CR>
 nmap <leader>t :TlistToggle<CR>
+nmap <leader>n :set number!
+nmap <leader>j :JSHint<CR>
+
 set pastetoggle=<leader>p
 
 " Taglist 
@@ -257,6 +262,7 @@ syntax on
 
 " i'm going to work like this for a while
 set number
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " vim:set filetype=vim:ts=4 
 

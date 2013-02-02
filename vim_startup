@@ -29,14 +29,17 @@ endif
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
+Bundle 'dwoof42/vim-fugitive'
 " Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 Bundle 'groenewege/vim-less'
-Bundle 'halletj/jslint.vim'
+
+if has("unix")
+	Bundle 'hallettj/jslint.vim'
+endif
 
 
 " always copy to the global clipboard

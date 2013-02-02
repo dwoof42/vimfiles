@@ -37,10 +37,9 @@ Bundle 'sjl/gundo.vim'
 Bundle 'groenewege/vim-less'
 
 if has("unix")
-	Bundle 'hallettj/jslint.vim'
+	Bundle 'walm/jshint.vim'
+	nmap <leader>j :JSHint<CR>
 endif
-
-Bundle 'walm/jshint.vim'
 
 " always copy to the global clipboard
 "if has("clipboard")
@@ -161,7 +160,6 @@ map <leader>k :silent noh<CR>
 " map the F1 key to escape in insert mode in case i hit it accidentally
 imap <F1> <Esc>
 
-" nmap \h :set ft=html<CR>
 " nmap \x :set ft=xml<CR>
 
 " and some simple mappings
@@ -182,7 +180,9 @@ nmap <leader>l :set list!<CR>
 nmap <leader>g :GundoToggle<CR>
 nmap <leader>t :TlistToggle<CR>
 nmap <leader>n :set number!
-nmap <leader>j :JSHint<CR>
+
+" useful for view-source in various browsers
+nmap <leader>h :set ft=html<CR>
 
 set pastetoggle=<leader>p
 

@@ -30,7 +30,6 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
@@ -114,7 +113,7 @@ if has("autocmd")
 " enable our plugins
     filetype plugin on
     augroup filetypedetect
-    au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
+    " au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
     autocmd BufNewFile,BufRead *.vb set ft=vbnet
     autocmd BufNewFile,BufRead *.ps1 set ft=ps1
     au BufRead,BufNewFile *.xml.txt		set filetype=xml 
@@ -159,7 +158,7 @@ imap <F1> <Esc>
 " nmap \x :set ft=xml<CR>
 
 " and some simple mappings
-" nmap \t :echo strftime("%c", localtime())<CR>
+nmap \t :echo strftime("%c", localtime())<CR>
 
 " and I often want to execute the current script
 map <leader>e :!./%<CR>
@@ -172,8 +171,8 @@ cmap w!! w !sudo tee % >/dev/null<CR>
 
 nmap <leader>c :!clear<cr><cr>
 nmap <leader>l :set list!<CR>
-nmap <leader>n :NERDTree<CR>
-nmap <leader>b :NERDTree %:p<CR>
+" nmap <leader>n :NERDTree<CR>
+" nmap <leader>b :NERDTree %:p<CR>
 nmap <leader>g :GundoToggle<CR>
 nmap <leader>t :TlistToggle<CR>
 set pastetoggle=<leader>p
@@ -236,9 +235,6 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 
 set viminfo=%,'50,\"100,n~/.viminfo
-
-" enable pathogen
-" call pathogen#infect()
 
 " :source $VIMRUNTIME/macros/matchit.vim
 

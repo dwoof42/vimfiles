@@ -35,6 +35,7 @@ Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 Bundle 'groenewege/vim-less'
+Bundle 'vim-scripts/aspnetcs.git'
 
 if has("unix")
 	Bundle 'walm/jshint.vim'
@@ -117,7 +118,7 @@ if has("autocmd")
 " enable our plugins
     filetype plugin on
     augroup filetypedetect
-    au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
+    " au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
     autocmd BufNewFile,BufRead *.vb set ft=vbnet
     autocmd BufNewFile,BufRead *.ps1 set ft=ps1
     au BufRead,BufNewFile *.xml.txt		set filetype=xml 
@@ -163,7 +164,7 @@ imap <F1> <Esc>
 " nmap \x :set ft=xml<CR>
 
 " and some simple mappings
-" nmap \t :echo strftime("%c", localtime())<CR>
+nmap \t :echo strftime("%c", localtime())<CR>
 
 " and I often want to execute the current script
 map <leader>e :!./%<CR>
@@ -245,9 +246,6 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 
 set viminfo=%,'50,\"100,n~/.viminfo
-
-" enable pathogen
-" call pathogen#infect()
 
 " :source $VIMRUNTIME/macros/matchit.vim
 

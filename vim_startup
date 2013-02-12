@@ -29,7 +29,8 @@ endif
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-Bundle 'dwoof42/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'

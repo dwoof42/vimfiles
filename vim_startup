@@ -248,7 +248,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 set viminfo=%,'50,\"100,n~/.viminfo
 
-" :source $VIMRUNTIME/macros/matchit.vim
+:source $VIMRUNTIME/macros/matchit.vim
 
 set incsearch
 

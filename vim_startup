@@ -37,6 +37,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
+Bundle 'scrooloose/syntastic.git'
 
 if has("unix")
 	Bundle 'walm/jshint.vim'

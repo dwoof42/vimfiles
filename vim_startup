@@ -39,10 +39,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'scrooloose/syntastic.git'
 
-if has("unix")
-	Bundle 'walm/jshint.vim'
-	nmap <leader>j :JSHint<CR>
-endif
+let g:syntastic_javascript_checkers=['jslint']
 
 " always copy to the global clipboard
 "if has("clipboard")

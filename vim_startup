@@ -37,6 +37,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
+Bundle 'Valloric/YouCompleteMe.git'
 Bundle 'scrooloose/syntastic.git'
 
 let g:syntastic_javascript_checkers=['jslint']

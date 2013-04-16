@@ -39,11 +39,11 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'scrooloose/syntastic.git'
+Bundle 'derekwyatt/vim-scala'
 
 if has("unix")
 	Bundle 'Valloric/YouCompleteMe.git'
 endif
-
 
 let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_conf = ""

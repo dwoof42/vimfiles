@@ -185,6 +185,9 @@ nmap <leader>n :set number!
 " useful for view-source in various browsers
 nmap <leader>h :set ft=html<CR>
 
+" clean up javacript
+nmap <leader>j :%s/^\s\+$//ge<CR>:%s/function(/function (/ge<CR>
+
 set pastetoggle=<leader>p
 
 " Taglist 
@@ -243,7 +246,6 @@ function! AppendModeline()
   call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
-
 
 set viminfo=%,'50,\"100,n~/.viminfo
 

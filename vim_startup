@@ -158,7 +158,8 @@ endif
 
 " let ctrl-k turn off search highliting, change to <leader>-k to avoid vsvim conflicts
 " use random string
-map <leader>k :silent noh<CR>
+nnoremap <leader>k :silent noh<CR>
+nnoremap Q :normal gg=G<cr>
 
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
@@ -168,10 +169,10 @@ map <leader>k :silent noh<CR>
 " FIXME: expand doesn't want to work here, but I should
 " make this handle variables 'n' such
 
-:map sf :sp <cfile><CR>
+:nnoremap sf :sp <cfile><CR>
 
 " map the F1 key to escape in insert mode in case i hit it accidentally
-imap <F1> <Esc>
+inoremap <F1> <Esc>
 
 " nnoremap \x :set ft=xml<CR>
 

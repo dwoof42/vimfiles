@@ -8,7 +8,7 @@ if has("win32")
 	set backupdir=$HOME\vimfiles\backup,$TEMP
 	set rtp+=$HOME\vimfiles\bundle\vundle
 endif
-	
+
 if has("unix")
 	set directory=$HOME/.vim/backup
 	set backupdir=$HOME/.vim/backup
@@ -16,8 +16,8 @@ if has("unix")
 endif
 
 if $TERM != "cygwin"
-"	let g:CSApprox_use_showrgb=1
-"	let g:CSApprox_verbose_level=5
+	"	let g:CSApprox_use_showrgb=1
+	"	let g:CSApprox_verbose_level=5
 endif
 
 
@@ -52,29 +52,29 @@ let g:syntastic_javascript_jslint_conf = ""
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
-  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
-  if l:tabstop > 0
-    let &l:sts = l:tabstop
-    let &l:ts = l:tabstop
-    let &l:sw = l:tabstop
-  endif
-  call SummarizeTabs()
+	let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+	if l:tabstop > 0
+		let &l:sts = l:tabstop
+		let &l:ts = l:tabstop
+		let &l:sw = l:tabstop
+	endif
+	call SummarizeTabs()
 endfunction
-  
+
 function! SummarizeTabs()
-  try
-    echohl ModeMsg
-    echon 'tabstop='.&l:ts
-    echon ' shiftwidth='.&l:sw
-    echon ' softtabstop='.&l:sts
-    if &l:et
-      echon ' expandtab'
-    else
-      echon ' noexpandtab'
-    endif
-  finally
-    echohl None
-  endtry
+	try
+		echohl ModeMsg
+		echon 'tabstop='.&l:ts
+		echon ' shiftwidth='.&l:sw
+		echon ' softtabstop='.&l:sts
+		if &l:et
+			echon ' expandtab'
+		else
+			echon ' noexpandtab'
+		endif
+	finally
+		echohl None
+	endtry
 endfunction
 
 
@@ -112,34 +112,47 @@ set wildignore=*.bak,~,*.o,*.info,*.swp,*.class
 " from vimrc_example
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-  " When editing a file, always jump to the last cursor position
-  "autocmd BufReadPost * if line("'\"") | exe "'\"" | endif
-" enable our plugins
-    filetype plugin on
-    augroup filetypedetect
-    " au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
-    autocmd BufNewFile,BufRead *.vb set ft=vbnet
-    autocmd BufNewFile,BufRead *.ps1 set ft=ps1
-    au BufRead,BufNewFile *.xml.txt		set filetype=xml 
-    " Xaml
-    au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
-	au BufEnter,BufRead,BufNewFile *.vssettings set filetype=xml
+	" enable our plugins
+	filetype plugin on
+	augroup filetypedetect
+		" au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
+		autocmd BufNewFile,BufRead *.vb set ft=vbnet
+		autocmd BufNewFile,BufRead *.ps1 set ft=ps1
+		au BufRead,BufNewFile *.xml.txt		set filetype=xml 
+		" Xaml
+		au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
+		au BufEnter,BufRead,BufNewFile *.vssettings set filetype=xml
+	augroup end
 
-    au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile   set ts=2 sts=2 sw=2 expandtab
-    au BufEnter,BufRead,BufNewFile *.py,*.hs   set ts=4 sts=4 sw=4 expandtab
-    au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
-    au BufEnter,BufRead,BufNewFile *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 
-	" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
+	augroup cprog
+	" Remove all cprog autocommands
+	au!
 
-    augroup end
+	" When starting to edit a file:
+	"   For C and C++ files set formatting of comments and set C-indenting on.
+	"   For other files switch it off.
+	"   Don't change the order, it's important that the line with * comes first.
+	autocmd FileType *      set formatoptions=tcql nocindent comments&
+	autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
+	augroup END
 
-    augroup grammar
-        au BufNewFile,BufRead,BufEnter *.grm	set ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
-    augroup end
 
-    " I don't remember what this is
-	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+	augroup auindent	
+		au!
+		au FileType *.rb,erb,Gemfile,Guardfile   set ts=2 sts=2 sw=2 expandtab
+		au FileType *.py,*.hs   set ts=4 sts=4 sw=4 expandtab
+		au FileType *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
+		au FileType *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
+
+		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
+
+	augroup end
+
+	augroup grammar
+		au!
+		au BufNewFile,BufRead,BufEnter *.grm	set ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+	augroup end
 
 endif
 
@@ -148,7 +161,7 @@ endif
 map <leader>k :silent noh<CR>
 
 " a cheap way to compile the current module
-" nmap <leader>p :python -c "import %"<cr>
+" nnoremap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
@@ -160,36 +173,36 @@ map <leader>k :silent noh<CR>
 " map the F1 key to escape in insert mode in case i hit it accidentally
 imap <F1> <Esc>
 
-" nmap \x :set ft=xml<CR>
+" nnoremap \x :set ft=xml<CR>
 
 " and some simple mappings
-nmap \t :echo strftime("%c", localtime())<CR>
+nnoremap \t :echo strftime("%c", localtime())<CR>
 
 " and I often want to execute the current script
-map <leader>e :!./%<CR>
-nmap <leader>x :!chmod +x %<cr><cr>
+noremap <leader>e :!./%<CR>
+nnoremap <leader>x :!chmod +x %<cr><cr>
 
 " write as root, but leave the Load prompt after
-cmap w!! w !sudo tee % >/dev/null<CR>
+cnoremap w!! w !sudo tee % >/dev/null<CR>
 
 cabbrev Gt Gtabedit!
 
-nmap <leader>a :AnsiEsc<CR>
-nmap <leader>c :!clear<cr><cr>
-nmap <leader>l :set list!<CR>
+nnoremap <leader>a :AnsiEsc<CR>
+nnoremap <leader>c :!clear<cr><cr>
+nnoremap <leader>l :set list!<CR>
 
-" nmap <leader>g :GundoToggle<CR>
-nmap <leader>t :TlistToggle<CR>
-nmap <leader>n :set number!
+" nnoremap <leader>g :GundoToggle<CR>
+nnoremap <leader>t :TlistToggle<CR>
+nnoremap <leader>n :set number!
 
 " useful for view-source in various browsers
-nmap <leader>h :set ft=html<CR>
+nnoremap <leader>h :set ft=html<CR>
 nnoremap <leader>i :normal migg=G`i
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 
 
 " clean up javacript
-nmap <leader>j :%s/^\s\+$//ge<CR>:%s/function(/function (/ge<CR>
+nnoremap <leader>j :%s/^\s\+$//ge<CR>:%s/function(/function (/ge<CR>
 
 set pastetoggle=<leader>p
 
@@ -201,32 +214,12 @@ set listchars=tab:>\ ,eol:$,trail:·
 " set listchars=tab:>·,eol:$
 
 " windows-ish keystrokes
-nmap <C-Y> <C-R>
+nnoremap <C-Y> <C-R>
 
 
 " Cd moves me to the directory of the current file
 com! Cd exec "cd " . expand("%:p:h")       
 
-
-if has("autocmd")
- augroup cprog
-  " Remove all cprog autocommands
-  au!
-
-  " When starting to edit a file:
-  "   For C and C++ files set formatting of comments and set C-indenting on.
-  "   For other files switch it off.
-  "   Don't change the order, it's important that the line with * comes first.
-  autocmd FileType *      set formatoptions=tcql nocindent comments&
-  autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
- augroup END
-
-" au BufNewFile,BufEnter *.pl    set kp=perldoc\ -f
-" au BufNewFile,BufEnter *.cgi set kp=perldoc\ -f
-" au BufNewFile,BufEnter *.pm set kp=perldoc\ -f
-
-" au BufNewFile,BufEnter \\\\* :NoMatchParen
-endif
 
 " I like highlighting strings inside C comments
 let c_comment_strings=1
@@ -243,10 +236,10 @@ set mousehide
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
-        \ &tabstop, &shiftwidth, &textwidth)
-  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-  call append(line("$"), l:modeline)
+let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
+		\ &tabstop, &shiftwidth, &textwidth)
+let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 

@@ -156,13 +156,12 @@ if has("autocmd")
 
 endif
 
-" let ctrl-k turn off search highliting, change to <leader>-k to avoid vsvim conflicts
-" use random string
+" let leader-k turn off search highliting
 nnoremap <leader>k :silent noh<CR>
-nnoremap Q :normal gg=G<cr>
+nnoremap <leader>q :normal gg=G<C-o><cr>
 
 " a cheap way to compile the current module
-" nnoremap <leader>p :python -c "import %"<cr>
+nnoremap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
@@ -192,12 +191,12 @@ nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 nnoremap <leader>l :set list!<CR>
 
-nnoremap <leader>t :TlistToggle<CR>
-nnoremap <leader>n :set number!
+nmap <leader>t :TlistToggle<CR>
+nmap <leader>n :set number!
 
 " useful for view-source in various browsers
 nnoremap <leader>h :set ft=html<CR>
-nnoremap <leader>i :normal migg=G`i
+nnoremap <leader>i :normal gg=G<C-o>
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 
 " clean up javacript

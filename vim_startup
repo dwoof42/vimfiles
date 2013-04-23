@@ -192,7 +192,6 @@ nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 nnoremap <leader>l :set list!<CR>
 
-" nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>t :TlistToggle<CR>
 nnoremap <leader>n :set number!
 
@@ -200,7 +199,6 @@ nnoremap <leader>n :set number!
 nnoremap <leader>h :set ft=html<CR>
 nnoremap <leader>i :normal migg=G`i
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
-
 
 " clean up javacript
 nnoremap <leader>j :%s/^\s\+$//ge<CR>:%s/function(/function (/ge<CR>

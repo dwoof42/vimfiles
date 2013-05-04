@@ -174,10 +174,8 @@ nnoremap <leader>p :python -c "import %"<cr>
 " map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>
 
-" nnoremap \x :set ft=xml<CR>
-
-" and some simple mappings
-nnoremap \t :echo strftime("%c", localtime())<CR>
+" and some simple mappings / tags now override this
+" nnoremap \t :echo strftime("%c", localtime())<CR>
 
 " and I often want to execute the current script
 noremap <leader>e :!./%<CR>

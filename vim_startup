@@ -159,6 +159,7 @@ endif
 " let leader-k turn off search highliting
 nnoremap <leader>k :silent noh<CR>
 nnoremap <leader>q :normal gg=G<C-o><cr>
+nnoremap <leader>m :MRU<CR>
 
 " a cheap way to compile the current module
 nnoremap <leader>p :python -c "import %"<cr>
@@ -200,7 +201,7 @@ nnoremap <leader>i :normal gg=G<C-o>
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 
 " clean up javacript
-nnoremap <leader>j :%s/^\s\+$//ge<CR>:%s/function(/function (/ge<CR>
+nnoremap <leader>j :%s/\s\+$//ge<CR>:%s#\s\+$//ge<CR>:%s/\(function\|typeof\|\s\+if\|else if\|for\)(#\1 (#ge<CR>
 
 set pastetoggle=<leader>p
 

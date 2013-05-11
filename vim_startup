@@ -122,19 +122,19 @@ if has("autocmd")
 		" Xaml
 		au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
 		au BufEnter,BufRead,BufNewFile *.vssettings set filetype=xml
-	augroup end
+	augroup END
 
 
 	augroup cprog
-	" Remove all cprog autocommands
-	au!
+		" Remove all cprog autocommands
+		au!
 
-	" When starting to edit a file:
-	"   For C and C++ files set formatting of comments and set C-indenting on.
-	"   For other files switch it off.
-	"   Don't change the order, it's important that the line with * comes first.
-	autocmd FileType *      set formatoptions=tcql nocindent comments&
-	autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
+		" When starting to edit a file:
+		"   For C and C++ files set formatting of comments and set C-indenting on.
+		"   For other files switch it off.
+		"   Don't change the order, it's important that the line with * comes first.
+		autocmd FileType *      set formatoptions=tcql nocindent comments&
+		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 	augroup END
 
 
@@ -147,18 +147,18 @@ if has("autocmd")
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
-	augroup end
+	augroup END
 
 	augroup grammar
 		au!
 		au BufNewFile,BufRead,BufEnter *.grm	set ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
-	augroup end
+	augroup END
 
 endif
 
 " let leader-k turn off search highliting
 nnoremap <leader>k :silent noh<CR>
-nnoremap <leader>q :normal gg=G<C-o><cr>
+nnoremap <leader>q :normal mzgg=G`z
 nnoremap <leader>m :MRU<CR>
 
 " a cheap way to compile the current module
@@ -235,10 +235,10 @@ set mousehide
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
 " files.
 function! AppendModeline()
-let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
-		\ &tabstop, &shiftwidth, &textwidth)
-let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-call append(line("$"), l:modeline)
+	let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
+				\ &tabstop, &shiftwidth, &textwidth)
+	let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+	call append(line("$"), l:modeline)
 endfunction
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 

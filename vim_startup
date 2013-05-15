@@ -198,7 +198,7 @@ nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 nnoremap <leader>u :GundoToggle<CR>
 
 " clean up javacript
-nnoremap <leader>j :%s/\s\+$//ge<CR>:%s#\s\+$//ge<CR>:%s/\(function\|typeof\|\s\+if\|else if\|for\)(#\1 (#ge<CR>
+nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
 
 set pastetoggle=<leader>p
 

@@ -116,12 +116,13 @@ if has("autocmd")
 	filetype plugin on
 	augroup filetypedetect
 		" au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
-		autocmd BufNewFile,BufRead *.vb set ft=vbnet
-		autocmd BufNewFile,BufRead *.ps1 set ft=ps1
-		au BufRead,BufNewFile *.xml.txt		set filetype=xml 
+		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
+		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
+		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml 
 		" Xaml
-		au BufEnter,BufRead,BufNewFile *.xaml        set filetype=xml
-		au BufEnter,BufRead,BufNewFile *.vssettings set filetype=xml
+		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
+		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml
+
 	augroup END
 
 
@@ -135,30 +136,27 @@ if has("autocmd")
 		"   Don't change the order, it's important that the line with * comes first.
 		autocmd FileType *      set formatoptions=tcql nocindent comments&
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
+
 	augroup END
 
 
 	augroup auindent	
 		au!
-		au FileType *.rb,erb,Gemfile,Guardfile   set ts=2 sts=2 sw=2 expandtab
-		au FileType *.py,*.hs   set ts=4 sts=4 sw=4 expandtab
-		au FileType *.cs,*.vb,*.xml,xaml set ts=4 sts=4 sw=4 noexpandtab
-		au FileType *.cshtml set filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
+		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile   setlocal ts=2 sts=2 sw=2 expandtab
+		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab
+		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
+		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
+		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
-	augroup END
-
-	augroup grammar
-		au!
-		au BufNewFile,BufRead,BufEnter *.grm	set ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 	augroup END
 
 endif
 
 " let leader-k turn off search highliting
 nnoremap <leader>k :silent noh<CR>
-nnoremap <leader>q :normal mzgg=G`z
+nnoremap <leader>q :normal mzgg=G`z<CR>
 nnoremap <leader>m :MRU<CR>
 
 " a cheap way to compile the current module
@@ -194,9 +192,10 @@ nmap <leader>t :TlistToggle<CR>
 nmap <leader>n :set number!
 
 " useful for view-source in various browsers
-nnoremap <leader>h :set ft=html<CR>
-nnoremap <leader>i :normal gg=G<C-o>
+nnoremap <leader>h :setlocal ft=html<CR>
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
+
+nnoremap <leader>u :GundoToggle<CR>
 
 " clean up javacript
 nnoremap <leader>j :%s/\s\+$//ge<CR>:%s#\s\+$//ge<CR>:%s/\(function\|typeof\|\s\+if\|else if\|for\)(#\1 (#ge<CR>
@@ -257,5 +256,5 @@ syntax on
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-" vim:set filetype=vim:ts=4 
+" vim:set ft=vim:ts=4 
 

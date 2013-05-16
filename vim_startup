@@ -164,10 +164,6 @@ nnoremap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
-" FIXME: expand doesn't want to work here, but I should
-" make this handle variables 'n' such
-
-:nnoremap sf :sp <cfile><CR>
 
 " map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>
@@ -237,7 +233,7 @@ function! AppendModeline()
 	let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
 	call append(line("$"), l:modeline)
 endfunction
-nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
+cnoremap ml :call AppendModeline()<CR>
 
 set viminfo=%,'50,\"100,n~/.viminfo
 
@@ -247,14 +243,11 @@ set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
-colorscheme mymolokai
+silent! colorscheme mymolokai
 
-" silent! colorscheme desert
 syntax on
 
-" i'm going to work like this for a while
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " vim:set ft=vim:ts=4 
-

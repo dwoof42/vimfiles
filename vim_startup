@@ -48,6 +48,7 @@ endif
 
 let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_conf = ""
+let g:syntastic_always_populate_loc_list=1
 
 " from vimcasts, a script to change tab settings
 " Set tabstop, softtabstop and shiftwidth to the same value

@@ -39,6 +39,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'scrooloose/syntastic.git'
+Bundle 'scrooloose/nerdtree.git'
 
 Bundle 'vim-scripts/JavaScript-Indent.git'
 if has("unix")
@@ -236,6 +237,9 @@ function! AppendModeline()
 	call append(line("$"), l:modeline)
 endfunction
 
+"function! reverse()
+"	:g/^/m0
+"endfunction
 
 set viminfo=%,'50,\"100,n~/.viminfo
 

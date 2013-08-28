@@ -35,7 +35,7 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
-Bundle 'groenewege/vim-less'
+" Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'scrooloose/syntastic.git'
@@ -170,6 +170,7 @@ nnoremap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
+:nnoremap sf :sp <cfile><CR>
 
 " map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>

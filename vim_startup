@@ -43,13 +43,15 @@ Bundle 'scrooloose/nerdtree.git'
 Bundle 'scrooloose/nerdcommenter.git'
 
 Bundle 'vim-scripts/JavaScript-Indent.git'
-if has("unix")
+"if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
-	Bundle 'derekwyatt/vim-scala'
-endif
+"	Bundle 'derekwyatt/vim-scala'
+"endif
 
 let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_conf = ""
+let g:syntastic_html_checkers=['']
+
 let g:syntastic_always_populate_loc_list=1
 
 " from vimcasts, a script to change tab settings

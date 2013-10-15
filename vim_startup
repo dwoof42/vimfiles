@@ -41,8 +41,7 @@ Bundle 'sjl/gundo.vim'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'scrooloose/syntastic.git'
-Bundle 'scrooloose/nerdtree.git'
-" Bundle 'scrooloose/nerdcommenter.git'
+" Bundle 'scrooloose/nerdtree.git'
 
 Bundle 'vim-scripts/JavaScript-Indent.git'
 "if has("unix")

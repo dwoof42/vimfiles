@@ -40,6 +40,7 @@ Bundle 'sjl/gundo.vim'
 " Bundle 'groenewege/vim-less'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
+Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
 " Bundle 'scrooloose/nerdtree.git'
 

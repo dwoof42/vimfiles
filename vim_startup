@@ -147,6 +147,8 @@ if has("autocmd")
 		autocmd FileType *      set formatoptions=tcql nocindent comments&
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 
+        autocmd FileType javascript let &formatprg="js-beautify -j -f -" 
+        
 	augroup END
 
 
@@ -203,7 +205,7 @@ nnoremap <leader>h :setlocal ft=html<CR>
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 
 nnoremap <leader>u :%s/public [a-zA-Z.<>?]\+ \([a-zA-Z0-9_]\+\) {.*$/\1 = s.\1,/
-nnoremap <leader>i mpgg=G`pzz
+nnoremap <leader>i mpgggqG`pzz
 
 " clean up javacript
 nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>

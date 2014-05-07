@@ -33,6 +33,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-repeat'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
@@ -44,7 +45,6 @@ Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
 " Bundle 'scrooloose/nerdtree.git'
 
-Bundle 'vim-scripts/JavaScript-Indent.git'
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
 "	Bundle 'derekwyatt/vim-scala'
@@ -170,7 +170,7 @@ nnoremap <leader>q :normal mzgg=G`z<CR>
 nnoremap <leader>m :MRU<CR>
 
 " a cheap way to compile the current module
-nnoremap <leader>p :python -c "import %"<cr>
+" nnoremap <leader>p :python -c "import %"<cr>
 
 
 " sf islike gf but in a new window 
@@ -207,6 +207,10 @@ nnoremap <leader>i mpgg=G`pzz
 
 " clean up javacript
 nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
+
+nnoremap <leader>ps  ^ipublic string A { get;set;}j^ 
+nnoremap <leader>pi  ^ipublic int A { get;set;}j^ 
+nnoremap <leader>pd  ^ipublic DateTime A { get;set;}j^ 
 
 set pastetoggle=<leader>p
 

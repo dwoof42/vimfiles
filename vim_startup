@@ -208,9 +208,19 @@ nnoremap <leader>i mpgg=G`pzz
 " clean up javacript
 nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
 
-nnoremap <leader>ps  ^ipublic string A { get;set;}j^ 
-nnoremap <leader>pi  ^ipublic int A { get;set;}j^ 
-nnoremap <leader>pd  ^ipublic DateTime A { get;set;}j^ 
+nnoremap <silent> <Plug>StringProp :s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#<CR>:noh<CR>j
+            \:call repeat#set("\<PLug>StringProp")<CR>
+nnoremap <silent> <Plug>IntProp :s#\([a-zA-Z_]\+\)#public int \1 {get;set;}#<CR>:noh<CR>j
+            \:call repeat#set("\<PLug>IntProp")<CR>
+nnoremap <silent> <Plug>DateProp :s#\([a-zA-Z_]\+\)#public DateTime \1 {get;set;}#<CR>:noh<CR>j
+            \:call repeat#set("\<PLug>DateProp")<CR>
+nnoremap <silent> <Plug>ObjProp :s#\([a-zA-Z_]\+\)#public \1 \1 {get;set;}#<CR>:noh<CR>j
+            \:call repeat#set("\<PLug>ObjProp")<CR>
+
+nmap <leader>ps  <Plug>StringProp
+nmap <leader>pi  <Plug>IntProp
+nmap <leader>pd  <Plug>DateProp
+nmap <leader>po  <Plug>ObjProp
 
 set pastetoggle=<leader>p
 

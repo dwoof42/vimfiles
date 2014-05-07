@@ -53,6 +53,7 @@ Bundle 'scrooloose/syntastic.git'
 let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_conf = ""
 let g:syntastic_html_checkers=['']
+let g:syntastic_haskell_checkers=['hdevtools']
 
 let g:syntastic_always_populate_loc_list=1
 

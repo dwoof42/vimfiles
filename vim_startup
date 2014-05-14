@@ -34,7 +34,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
-Bundle 'vim-scripts/taglist.vim'
+" Bundle 'vim-scripts/taglist.vim'
 Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
@@ -43,7 +43,7 @@ Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
-" Bundle 'scrooloose/nerdtree.git'
+Bundle 'scrooloose/nerdtree.git'
 
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
@@ -225,7 +225,7 @@ nmap <leader>pi  <Plug>IntProp
 nmap <leader>pd  <Plug>DateProp
 nmap <leader>po  <Plug>ObjProp
 
-set pastetoggle=<leader>p
+set pastetoggle=<leader>pp
 
 " Taglist 
 let Tlist_GainFocus_On_ToggleOpen = 1

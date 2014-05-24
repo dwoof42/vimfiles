@@ -39,21 +39,33 @@ Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 " Bundle 'groenewege/vim-less'
-Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'scrooloose/nerdtree.git'
+Bundle 'vim-scripts/aspnetcs.git'
+Bundle 'vim-scripts/jade.vim'
 
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
 "	Bundle 'derekwyatt/vim-scala'
 "endif
 
+function! FindCabalSandboxRoot()
+    return finddir('.cabal-sandbox', './;')
+endfunction
+
+function! FindCabalSandboxRootPackageConf()
+    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
+endfunction
+
+let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
+
+
 let g:syntastic_javascript_checkers=['jslint']
-let g:syntastic_javascript_jslint_conf = ""
+let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
-let g:syntastic_haskell_checkers=['hdevtools']
+let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 
 let g:syntastic_always_populate_loc_list=1
 
@@ -148,8 +160,8 @@ if has("autocmd")
 		autocmd FileType *      set formatoptions=tcql nocindent comments&
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 
-        autocmd FileType javascript let &formatprg="js-beautify -j -f -" 
-        
+        autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
+        autocmd FileType html let &formatprg="html-beautify -q -f -" 
 	augroup END
 
 
@@ -178,6 +190,14 @@ nnoremap <leader>m :MRU<CR>
 
 " sf islike gf but in a new window 
 :nnoremap sf :sp <cfile><CR>
+" and the same thing for node require modules
+:nnoremap gj :e %:h/<cfile>.js<CR>
+:nnoremap sj :vs %:h/<cfile>.js<CR>
+
+" make ctrl- work like ctrl-o
+:nnoremap <C>- <C>o
+
+
 
 " map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>

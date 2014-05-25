@@ -1,0 +1,64 @@
+" split out the items that non-vim editors can use (e.g., vsvim)
+
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set autoindent
+set expandtab
+
+set showmatch
+set ignorecase
+set smartcase
+
+" a bit contradictory here
+set visualbell
+set noerrorbells
+
+" set textwidth=120
+set nowrap
+
+set showcmd
+
+" avoid the 'hit enter to continue messages
+set shm=ITta
+
+" cindent just annoys me
+set nocindent
+set noruler
+
+" things to ignore for file completion
+set wildignore=*.bak,~,*.o,*.info,*.swp,*.class
+
+set selectmode=mouse
+
+set incsearch
+" Switch on search pattern highlighting.
+" set hlsearch
+
+nnoremap <leader>k :noh<CR>
+nnoremap <leader>q :normal mzgg=G`z<CR>
+
+" sf islike gf but in a new window 
+:nnoremap sf :sp <cfile><CR>
+" and the same thing for node require modules
+:nnoremap gj :e %:h/<cfile>.js<CR>
+:nnoremap sj :vs %:h/<cfile>.js<CR>
+
+" make ctrl- work like ctrl-o
+:nnoremap <C>- <C>o
+
+nnoremap <leader>l :set list!<CR>
+nnoremap <leader>n :set number!<CR>
+
+" useful for view-source in various browsers
+nnoremap <leader>h :setlocal ft=html<CR>
+
+nnoremap <leader>u :%s/public [a-zA-Z.<>?]\+ \([a-zA-Z0-9_]\+\) {.*$/\1 = s.\1,/
+nnoremap <leader>i mpgggqG`pzz
+
+" clean up javacript
+nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
+
+
+

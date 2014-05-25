@@ -15,12 +15,6 @@ if has("unix")
 	set rtp+=$HOME/.vim/bundle/vundle/
 endif
 
-if $TERM != "cygwin"
-	"	let g:CSApprox_use_showrgb=1
-	"	let g:CSApprox_verbose_level=5
-endif
-
-
 
 " for new installations, install vundle into the bundle dir 
 "git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle 
@@ -52,6 +46,7 @@ Bundle 'vim-scripts/jade.vim'
 "	Bundle 'derekwyatt/vim-scala'
 "endif
 
+" Syntastic setup
 function! FindCabalSandboxRoot()
     return finddir('.cabal-sandbox', './;')
 endfunction
@@ -61,7 +56,6 @@ function! FindCabalSandboxRootPackageConf()
 endfunction
 
 let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
-
 
 let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_args = "--nomen"
@@ -102,35 +96,6 @@ endfunction
 
 
 
-set selectmode=mouse
-
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set smarttab
-set autoindent
-set expandtab
-
-set showmatch
-
-" a bit contradictory here
-set visualbell
-set noerrorbells
-
-" set textwidth=120
-set nowrap
-
-set showcmd
-
-" avoid the 'hit enter to continue messages
-set shm=ITta
-
-" cindent just annoys me
-set nocindent
-set noruler
-
-" things to ignore for file completion
-set wildignore=*.bak,~,*.o,*.info,*.swp,*.class
 
 
 " from vimrc_example
@@ -181,56 +146,31 @@ if has("autocmd")
 endif
 
 " let leader-k turn off search highliting
-nnoremap <leader>k :silent noh<CR>
-nnoremap <leader>q :normal mzgg=G`z<CR>
 nnoremap <leader>m :MRU<CR>
 
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
 
-
-" sf islike gf but in a new window 
-:nnoremap sf :sp <cfile><CR>
-" and the same thing for node require modules
-:nnoremap gj :e %:h/<cfile>.js<CR>
-:nnoremap sj :vs %:h/<cfile>.js<CR>
-
-" make ctrl- work like ctrl-o
-:nnoremap <C>- <C>o
-
-
-
 " map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>
 
-" and some simple mappings / tags now override this
-" nnoremap \t :echo strftime("%c", localtime())<CR>
-
 " and I often want to execute the current script
-noremap <leader>e :!./%<CR>
-nnoremap <leader>x :!chmod +x %<cr><cr>
+if has("unix")
+    noremap <leader>e :!./%<CR>
+    nnoremap <leader>x :!chmod +x %<cr><cr>
+    " write as root, but leave the Load prompt after
+    cnoremap w!! w !sudo tee % >/dev/null<CR>
+endif
 
-" write as root, but leave the Load prompt after
-cnoremap w!! w !sudo tee % >/dev/null<CR>
 
+" gitttish things
 cabbrev Gt Gtabedit!
+nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 
 nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
-nnoremap <leader>l :set list!<CR>
 
 nmap <leader>t :TlistToggle<CR>
-nmap <leader>n :set number!
-
-" useful for view-source in various browsers
-nnoremap <leader>h :setlocal ft=html<CR>
-nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
-
-nnoremap <leader>u :%s/public [a-zA-Z.<>?]\+ \([a-zA-Z0-9_]\+\) {.*$/\1 = s.\1,/
-nnoremap <leader>i mpgggqG`pzz
-
-" clean up javacript
-nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
 
 nnoremap <silent> <Plug>StringProp :s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#<CR>:noh<CR>j
             \:call repeat#set("\<PLug>StringProp")<CR>
@@ -266,8 +206,6 @@ com! Cd exec "cd " . expand("%:p:h")
 " I like highlighting strings inside C comments
 let c_comment_strings=1
 
-" Switch on search pattern highlighting.
-set hlsearch
 
 filetype plugin indent on
 
@@ -292,7 +230,6 @@ set viminfo=%,'50,\"100,n~/.viminfo
 
 :source $VIMRUNTIME/macros/matchit.vim
 
-set incsearch
 
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue

@@ -1,6 +1,6 @@
 " Always remember this file is sourced by both the unix and Win32 versions
 set nocompatible
-
+filetype off " vundle requires this
 set enc=utf-8
 
 if has("win32")
@@ -92,10 +92,6 @@ function! SummarizeTabs()
 		echohl None
 	endtry
 endfunction
-
-
-
-
 
 
 " from vimrc_example

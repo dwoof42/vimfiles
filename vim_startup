@@ -28,8 +28,9 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-repeat'
-" Bundle 'vim-scripts/taglist.vim'
-Bundle 'vim-scripts/mru.vim'
+Bundle 'vim-scripts/taglist.vim'
+" probably obsoleted by ctrlp
+" Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
 " Bundle 'groenewege/vim-less'
@@ -40,6 +41,7 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/jade.vim'
+
 
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
@@ -141,8 +143,7 @@ if has("autocmd")
 
 endif
 
-" let leader-k turn off search highliting
-nnoremap <leader>m :MRU<CR>
+nnoremap <leader>m :CtrlPMRU<CR>
 
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
@@ -167,6 +168,7 @@ nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 
 nmap <leader>t :TlistToggle<CR>
+nnoremap <leader>u :GundoToggle<CR>
 
 nnoremap <silent> <Plug>StringProp :s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#<CR>:noh<CR>j
             \:call repeat#set("\<PLug>StringProp")<CR>

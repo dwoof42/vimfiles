@@ -53,8 +53,9 @@ nnoremap <leader>n :set number!<CR>
 
 " useful for view-source in various browsers
 nnoremap <leader>h :setlocal ft=html<CR>
+nnoremap <leader>x :setlocal ft=xml<CR>
 
-nnoremap <leader>o :%s/public [a-zA-Z.<>?]\+ \([a-zA-Z0-9_]\+\) {.*$/\1 = s.\1,/
+nnoremap <leader>o :%s#public [a-zA-Z.<>?]\+ \([a-zA-Z0-9_]\+\) {.*$/\1 = s.\1,#
 nnoremap <leader>i mpgggqG`pzz
 
 " clean up javacript

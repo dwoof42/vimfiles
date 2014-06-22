@@ -27,7 +27,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-repeat'
 Bundle 'vim-scripts/taglist.vim'
 " probably obsoleted by ctrlp
 " Bundle 'vim-scripts/mru.vim'
@@ -59,7 +58,7 @@ endfunction
 
 let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
-let g:syntastic_javascript_checkers=['jslint']
+let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
 let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -145,6 +144,8 @@ endif
 
 nnoremap <leader>m :CtrlPMRU<CR>
 
+nnoremap <leader>y mmya}V%y
+
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
 
@@ -170,21 +171,9 @@ nnoremap <leader>c :!clear<cr><cr>
 nmap <leader>t :TlistToggle<CR>
 nnoremap <leader>u :GundoToggle<CR>
 
-nnoremap <silent> <Plug>StringProp :s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#<CR>:noh<CR>j
-            \:call repeat#set("\<PLug>StringProp")<CR>
-nnoremap <silent> <Plug>IntProp :s#\([a-zA-Z_]\+\)#public int \1 {get;set;}#<CR>:noh<CR>j
-            \:call repeat#set("\<PLug>IntProp")<CR>
-nnoremap <silent> <Plug>DateProp :s#\([a-zA-Z_]\+\)#public DateTime \1 {get;set;}#<CR>:noh<CR>j
-            \:call repeat#set("\<PLug>DateProp")<CR>
-nnoremap <silent> <Plug>ObjProp :s#\([a-zA-Z_]\+\)#public \1 \1 {get;set;}#<CR>:noh<CR>j
-            \:call repeat#set("\<PLug>ObjProp")<CR>
+nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 
-nmap <leader>ps  <Plug>StringProp
-nmap <leader>pi  <Plug>IntProp
-nmap <leader>pd  <Plug>DateProp
-nmap <leader>po  <Plug>ObjProp
-
-set pastetoggle=<leader>pp
+" set pastetoggle=<leader>pp
 
 " Taglist 
 let Tlist_GainFocus_On_ToggleOpen = 1

@@ -40,7 +40,7 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'vim-scripts/aspnetcs.git'
 Bundle 'vim-scripts/jade.vim'
-
+Bundle 'mustache/vim-mustache-handlebars' 
 
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
@@ -105,6 +105,7 @@ if has("autocmd")
 		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
 		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
 		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml 
+		autocmd BufEnter,BufRead,BufNewFile *.config		setlocal filetype=xml 
 		" Xaml
 		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
 		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml

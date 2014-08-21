@@ -46,7 +46,8 @@ Bundle 'mustache/vim-mustache-handlebars'
 "	Bundle 'Valloric/YouCompleteMe.git'
 "	Bundle 'derekwyatt/vim-scala'
 "endif
-
+" chdir when we change root
+let NERDTreeChDirMode=2
 " Syntastic setup
 function! FindCabalSandboxRoot()
     return finddir('.cabal-sandbox', './;')
@@ -58,7 +59,7 @@ endfunction
 
 let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['jslint']
 let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
 let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -147,6 +148,9 @@ nnoremap <leader>m :CtrlPMRU<CR>
 
 nnoremap <leader>y mmya}V%y
 
+nnoremap <leader>x :%s/\(<[^>]*>\)/\n\1/g<CR>1G=G
+" nnoremap <leader>x :%s#\(<[^/]\)#\r\1#g<CR>1G=G
+
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
 
@@ -228,5 +232,8 @@ syntax on
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
+
+set diffopt=filler,vertical
+
 
 " vim:set ft=vim:ts=4 

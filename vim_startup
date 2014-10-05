@@ -6,12 +6,14 @@ set enc=utf-8
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
+    set undodir=$HOME\vimfiles\backup,$TEMP
 	set rtp+=$HOME\vimfiles\bundle\vundle
 endif
 
 if has("unix")
 	set directory=$HOME/.vim/backup
 	set backupdir=$HOME/.vim/backup
+	set undodir=$HOME/.vim/backup
 	set rtp+=$HOME/.vim/bundle/vundle/
 endif
 
@@ -45,7 +47,7 @@ Bundle 'msanders/snipmate.vim'
 
 "if has("unix")
 "	Bundle 'Valloric/YouCompleteMe.git'
-"	Bundle 'derekwyatt/vim-scala'
+	Bundle 'derekwyatt/vim-scala'
 "endif
 
 " Syntastic setup
@@ -229,5 +231,6 @@ syntax on
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
+set undofile
 
 " vim:set ft=vim:ts=4 

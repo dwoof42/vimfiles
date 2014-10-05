@@ -48,9 +48,6 @@ nnoremap <leader>q :normal mzgg=G`z<CR>
 " make ctrl- work like ctrl-o
 :nnoremap <C>- <C>o
 
-nnoremap <leader>l :set list!<CR>
-nnoremap <leader>n :set number!<CR>
-
 " useful for view-source in various browsers
 nnoremap <leader>h :setlocal ft=html<CR>
 nnoremap <leader>x :setlocal ft=xml<CR>

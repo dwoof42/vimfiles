@@ -109,7 +109,7 @@ if has("autocmd")
 		" au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
 		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
 		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
-		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml 
+		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml equalprg=xmllint\ --format\ -
 		" Xaml
 		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
 		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml
@@ -140,6 +140,8 @@ if has("autocmd")
 		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
 		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+
+        au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 

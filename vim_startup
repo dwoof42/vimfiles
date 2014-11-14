@@ -39,7 +39,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'scrooloose/syntastic.git'
 Bundle 'scrooloose/nerdtree.git'
 Bundle 'vim-scripts/aspnetcs.git'
-Bundle 'vim-scripts/jade.vim'
+Bundle 'vim-scripts/logstash.vim'
 Bundle 'mustache/vim-mustache-handlebars' 
 
 "if has("unix")

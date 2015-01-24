@@ -34,7 +34,7 @@ Bundle 'vim-scripts/taglist.vim'
 " Bundle 'vim-scripts/mru.vim'
 Bundle 'bufexplorer.zip'
 Bundle 'sjl/gundo.vim'
-" Bundle 'groenewege/vim-less'
+Bundle 'groenewege/vim-less'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/AnsiEsc.vim'
 Bundle 'mattn/emmet-vim'
@@ -46,10 +46,13 @@ Bundle 'vim-scripts/logstash.vim'
 Bundle 'kchmck/vim-coffee-script'
 
 
-"if has("unix")
-"	Bundle 'Valloric/YouCompleteMe.git'
-	Bundle 'derekwyatt/vim-scala'
-"endif
+
+if has("unix")
+	" Bundle 'Valloric/YouCompleteMe'
+	" Bundle 'derekwyatt/vim-scala'
+    " Bundle 'fatih/vim-go'
+    Bundle "bitc/vim-hdevtools"
+endif
 
 " Syntastic setup
 function! FindCabalSandboxRoot()
@@ -60,15 +63,20 @@ function! FindCabalSandboxRootPackageConf()
     return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
 endfunction
 
-let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
+"let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
+"let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
-let g:syntastic_javascript_checkers=['jslint']
-let g:syntastic_javascript_jslint_args = "--nomen"
+let g:syntastic_javascript_checkers=['jshint']
+" let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
 
 let g:syntastic_always_populate_loc_list=1
+
+" go settings
+let g:go_fmt_fail_silently=1
+
 
 " from vimcasts, a script to change tab settings
 " Set tabstop, softtabstop and shiftwidth to the same value
@@ -142,6 +150,7 @@ if has("autocmd")
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
         au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
+		au BufEnter,BufRead,BufNewFile *.hs   setlocal makeprg=cabal\ build
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 

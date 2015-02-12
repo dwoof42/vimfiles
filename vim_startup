@@ -143,7 +143,7 @@ if has("autocmd")
 
 	augroup auindent	
 		au!
-		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile   setlocal ts=2 sts=2 sw=2 expandtab
+		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile,Vagrantfile   setlocal ts=2 sts=2 sw=2 expandtab
 		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab
 		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
 		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab

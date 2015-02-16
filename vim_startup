@@ -22,29 +22,29 @@ endif
 
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'vim-scripts/taglist.vim'
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-scripts/taglist.vim'
 " probably obsoleted by ctrlp
-" Bundle 'vim-scripts/mru.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'sjl/gundo.vim'
-" Bundle 'groenewege/vim-less'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/AnsiEsc.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'vim-scripts/aspnetcs.git'
-Bundle 'vim-scripts/logstash.vim'
-Bundle 'mustache/vim-mustache-handlebars' 
+" Plugin 'vim-scripts/mru.vim'
+Plugin 'bufexplorer.zip'
+Plugin 'sjl/gundo.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/AnsiEsc.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'vim-scripts/aspnetcs.git'
+Plugin 'vim-scripts/logstash.vim'
+Plugin 'mustache/vim-mustache-handlebars' 
 
 "if has("unix")
-"	Bundle 'Valloric/YouCompleteMe.git'
-"	Bundle 'derekwyatt/vim-scala'
+"	Plugin 'Valloric/YouCompleteMe.git'
+"	Plugin 'derekwyatt/vim-scala'
 "endif
 " chdir when we change root
 let NERDTreeChDirMode=2
@@ -106,7 +106,7 @@ if has("autocmd")
 		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
 		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
 		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml 
-		autocmd BufEnter,BufRead,BufNewFile *.config		setlocal filetype=xml 
+		" autocmd BufEnter,BufRead,BufNewFile *.config		setlocal filetype=xml 
 		" Xaml
 		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
 		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml
@@ -127,6 +127,7 @@ if has("autocmd")
 
         autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
         autocmd FileType html let &formatprg="html-beautify -q -f -" 
+        autocmd FileType xml let &formatprg="xmllint --format -"
 	augroup END
 
 
@@ -175,8 +176,11 @@ nnoremap <leader>c :!clear<cr><cr>
 
 nmap <leader>t :TlistToggle<CR>
 nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
+nnoremap <leader>d :let @* = expand("%:p:h")<CR>
+cnoremap sd :split %:h
 
 " set pastetoggle=<leader>pp
 
@@ -234,6 +238,8 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 
 set diffopt=filler,vertical
+
+
 
 
 " vim:set ft=vim:ts=4 

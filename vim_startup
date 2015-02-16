@@ -24,26 +24,26 @@ endif
 
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-commentary'
-Bundle 'vim-scripts/taglist.vim'
+Plugin 'gmarik/vundle'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-scripts/taglist.vim'
 " probably obsoleted by ctrlp
 " Bundle 'vim-scripts/mru.vim'
-Bundle 'bufexplorer.zip'
-Bundle 'sjl/gundo.vim'
-Bundle 'groenewege/vim-less'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/AnsiEsc.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'scrooloose/syntastic.git'
-Bundle 'scrooloose/nerdtree.git'
-Bundle 'vim-scripts/aspnetcs.git'
-Bundle 'msanders/snipmate.vim'
-Bundle 'vim-scripts/logstash.vim'
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'bufexplorer.zip'
+Plugin 'sjl/gundo.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/AnsiEsc.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/syntastic.git'
+Plugin 'scrooloose/nerdtree.git'
+Plugin 'vim-scripts/aspnetcs.git'
+Plugin 'msanders/snipmate.vim'
+Plugin 'vim-scripts/logstash.vim'
+Plugin 'kchmck/vim-coffee-script'
 
 
 
@@ -176,6 +176,9 @@ if has("unix")
     cnoremap w!! w !sudo tee % >/dev/null<CR>
 endif
 
+" xml format
+" nnoremap <leader>x :%s/\(<[^>]*>\)/\n\1/g<CR>1G=G
+
 
 " gitttish things
 cabbrev Gt Gtabedit!
@@ -186,8 +189,11 @@ nnoremap <leader>c :!clear<cr><cr>
 
 nmap <leader>t :TlistToggle<CR>
 nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
+nnoremap <leader>d :let @* = expand("%:p:h")<CR>
+cnoremap sd :split %:h
 
 " set pastetoggle=<leader>pp
 

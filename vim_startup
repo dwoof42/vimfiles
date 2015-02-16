@@ -6,12 +6,14 @@ set enc=utf-8
 if has("win32")
 	set directory=$HOME\vimfiles\backup,$TEMP
 	set backupdir=$HOME\vimfiles\backup,$TEMP
+    set undodir=$HOME\vimfiles\backup,$TEMP
 	set rtp+=$HOME\vimfiles\bundle\vundle
 endif
 
 if has("unix")
 	set directory=$HOME/.vim/backup
 	set backupdir=$HOME/.vim/backup
+	set undodir=$HOME/.vim/backup
 	set rtp+=$HOME/.vim/bundle/vundle/
 endif
 
@@ -29,25 +31,29 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/taglist.vim'
 " probably obsoleted by ctrlp
-" Plugin 'vim-scripts/mru.vim'
+" Bundle 'vim-scripts/mru.vim'
 Plugin 'bufexplorer.zip'
 Plugin 'sjl/gundo.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/AnsiEsc.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'vim-scripts/aspnetcs.git'
-Plugin 'vim-scripts/logstash.vim'
-Plugin 'mustache/vim-mustache-handlebars' 
+Bundle 'vim-scripts/AnsiEsc.vim'
+Bundle 'mattn/emmet-vim'
+Bundle 'scrooloose/syntastic.git'
+Bundle 'scrooloose/nerdtree.git'
+Bundle 'vim-scripts/aspnetcs.git'
+Bundle 'msanders/snipmate.vim'
+Bundle 'vim-scripts/logstash.vim'
+Bundle 'kchmck/vim-coffee-script'
 
-"if has("unix")
-"	Plugin 'Valloric/YouCompleteMe.git'
-"	Plugin 'derekwyatt/vim-scala'
-"endif
-" chdir when we change root
-let NERDTreeChDirMode=2
+
+
+if has("unix")
+	" Bundle 'Valloric/YouCompleteMe'
+	" Bundle 'derekwyatt/vim-scala'
+    " Bundle 'fatih/vim-go'
+    Bundle "bitc/vim-hdevtools"
+endif
+
 " Syntastic setup
 function! FindCabalSandboxRoot()
     return finddir('.cabal-sandbox', './;')
@@ -59,12 +65,16 @@ endfunction
 
 let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
-let g:syntastic_javascript_checkers=['jslint']
-let g:syntastic_javascript_jslint_args = "--nomen"
+let g:syntastic_javascript_checkers=['jshint']
+" let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
-let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
+" let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 
 let g:syntastic_always_populate_loc_list=1
+
+" go settings
+let g:go_fmt_fail_silently=1
+
 
 " from vimcasts, a script to change tab settings
 " Set tabstop, softtabstop and shiftwidth to the same value
@@ -138,6 +148,9 @@ if has("autocmd")
 		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
 		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
+
+        au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
+		au BufEnter,BufRead,BufNewFile *.hs   setlocal makeprg=cabal\ build
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
@@ -236,10 +249,6 @@ syntax on
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
-
-set diffopt=filler,vertical
-
-
-
+set undofile
 
 " vim:set ft=vim:ts=4 

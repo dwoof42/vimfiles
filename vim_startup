@@ -200,6 +200,9 @@ cnoremap sd :split %:h
 " Taglist 
 let Tlist_GainFocus_On_ToggleOpen = 1
 
+
+let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|bower_components)$'
+
 " set listchars=tab:?\ ,eol:Â¬
 set listchars=tab:>\ ,eol:$,trail:·
 " set listchars=tab:>·,eol:$

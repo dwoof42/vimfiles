@@ -69,6 +69,7 @@ endfunction
 let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_html_checkers=['']
+let g:syntastic_xml_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
 
@@ -161,6 +162,7 @@ if has("autocmd")
 endif
 
 nnoremap <leader>m :CtrlPMRU<CR>
+let g:ctrlp_mruf_max = 1000
 
 nnoremap <leader>y mmya}V%y
 
@@ -208,6 +210,7 @@ set listchars=tab:>\ ,eol:$,trail:·
 
 " windows-ish keystrokes
 nnoremap <C-Y> <C-R>
+nnoremap <leader>f :set ft=javascript<cr>1GgqG1G
 
 
 " Cd moves me to the directory of the current file
@@ -252,5 +255,7 @@ set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set undofile
+
+set diffopt=filler,vertical
 
 " vim:set ft=vim:ts=4 

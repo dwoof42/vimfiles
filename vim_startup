@@ -195,6 +195,7 @@ nnoremap <leader>s :SyntasticToggleMode<CR>
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 cnoremap sd :split %:h
+cnoremap gd :e %:h
 
 " set pastetoggle=<leader>pp
 

@@ -78,6 +78,8 @@ let g:syntastic_always_populate_loc_list=1
 " go settings
 let g:go_fmt_fail_silently=1
 
+let g:ctrlp_mruf_exclude = '.git/*|*.tmp'
+
 
 " from vimcasts, a script to change tab settings
 " Set tabstop, softtabstop and shiftwidth to the same value
@@ -194,6 +196,7 @@ nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
+nnoremap <leader>r :let @* = substitute(expand("%"),"\\","/","g")<CR>
 cnoremap sd :split %:h
 cnoremap gd :e %:h
 

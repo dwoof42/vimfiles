@@ -33,7 +33,7 @@ Plugin 'vim-scripts/taglist.vim'
 " probably obsoleted by ctrlp
 " Bundle 'vim-scripts/mru.vim'
 Plugin 'bufexplorer.zip'
-Plugin 'sjl/gundo.vim'
+" Plugin 'sjl/gundo.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/AnsiEsc.vim'
@@ -41,9 +41,10 @@ Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-scripts/aspnetcs.git'
-Plugin 'msanders/snipmate.vim'
+" Plugin 'msanders/snipmate.vim'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'leafgarland/typescript-vim'
 
 
 
@@ -51,7 +52,8 @@ if has("unix")
 	" Bundle 'Valloric/YouCompleteMe'
 	" Bundle 'derekwyatt/vim-scala'
     " Bundle 'fatih/vim-go'
-    Bundle "bitc/vim-hdevtools"
+    Plugin 'bitc/vim-hdevtools'
+    Plugin 'Twinside/vim-hoogle'
 endif
 
 " Syntastic setup

@@ -46,6 +46,9 @@ Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 
+" tryout gulp
+Plugin 'KabbAmine/gulp-vim'
+
 
 
 if has("unix")
@@ -75,6 +78,8 @@ let g:syntastic_typescript_checkers=['tslint']
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
+
+let g:syntastic_typescript_checkers=['tslint']
 
 let g:syntastic_always_populate_loc_list=1
 

@@ -45,6 +45,7 @@ Plugin 'vim-scripts/aspnetcs.git'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'jsx/jsx.vim'
 
 
 
@@ -71,7 +72,7 @@ endfunction
 
 let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-let g:syntastic_typescript_checkers=['tslint']
+let g:syntastic_typescript_checkers=['tsc']
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
@@ -143,24 +144,28 @@ if has("autocmd")
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 
         autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
+        autocmd FileType javascript let &makeprg="gulp"
         autocmd FileType html let &formatprg="html-beautify -q -f -" 
+
 	augroup END
 
 
 	augroup auindent	
 		au!
 		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile,Vagrantfile   setlocal ts=2 sts=2 sw=2 expandtab
-		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab
+		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab 
 		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
 		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
         au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
-		au BufEnter,BufRead,BufNewFile *.hs   setlocal makeprg=cabal\ build
+		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=cabal\ build
+        au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
 	augroup END
+
 
 endif
 
@@ -196,6 +201,8 @@ nnoremap <leader>c :!clear<cr><cr>
 nmap <leader>t :TlistToggle<CR>
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>s :SyntasticToggleMode<CR>
+
+nnoremap <leader>l :set list!<CR>
 
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>

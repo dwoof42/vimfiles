@@ -43,8 +43,6 @@ Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'jsx/jsx.vim'
-
-" tryout gulp
 Plugin 'KabbAmine/gulp-vim'
 
 

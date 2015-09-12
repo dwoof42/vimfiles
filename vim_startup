@@ -75,11 +75,11 @@ let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tsc']
 
-" let g:syntastic_typescript_tslint_args_fname_before=''
-
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
+
+let g:syntastic_jsx_checkers=['eslint']
 
 let g:syntastic_always_populate_loc_list=1
 
@@ -168,6 +168,11 @@ if has("autocmd")
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
 
 	augroup END
+
+    augroup js
+        au!
+        au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
+    augroup END
 
 
 endif

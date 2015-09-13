@@ -39,6 +39,7 @@ Plugin 'scrooloose/syntastic.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-scripts/aspnetcs.git'
 " Plugin 'msanders/snipmate.vim'
+Plugin 'SirVer/ultisnips'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
@@ -58,6 +59,16 @@ endif
 call vundle#end()
 filetype plugin on
 
+" ultisnips setup
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+
 " Syntastic setup
 function! FindCabalSandboxRoot()
     return finddir('.cabal-sandbox', './;')
@@ -73,7 +84,7 @@ endfunction
 
 let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-let g:syntastic_typescript_checkers=['tsc']
+let g:syntastic_typescript_checkers=['tslint']
 
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -217,6 +228,7 @@ nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>r :let @* = substitute(expand("%"),"\\","/","g")<CR>
 cnoremap sd :split %:h
 cnoremap gd :e %:h
+
 
 " set pastetoggle=<leader>pp
 

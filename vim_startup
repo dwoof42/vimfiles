@@ -47,7 +47,7 @@ Plugin 'KabbAmine/gulp-vim'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 
 
 Plugin 'Valloric/YouCompleteMe'
@@ -63,8 +63,8 @@ call vundle#end()
 filetype plugin on
 
 " " ultisnips setup
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " " If you want :UltiSnipsEdit to split your window.
@@ -292,5 +292,6 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set undofile
 set diffopt=filler,vertical
+
 
 " vim:set ft=vim:ts=4 

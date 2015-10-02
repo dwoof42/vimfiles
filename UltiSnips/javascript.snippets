@@ -1,0 +1,25 @@
+snippet angular-test
+	/*global mockData*/
+
+	(function () {
+		'use strict';
+
+		describe('${1}', function () {
+
+			var vm;
+
+			beforeEach(module('${2}'));
+
+			beforeEach(inject(function($controller, $q) {
+				vm = $controller('ProjectController');
+			}));
+
+			it('should exist', function () {
+				expect(vm).not.toBeNull();
+			});
+
+		});
+	})();
+
+endsnippet
+

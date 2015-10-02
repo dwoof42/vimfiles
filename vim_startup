@@ -47,12 +47,12 @@ Plugin 'KabbAmine/gulp-vim'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+" Plugin 'garbas/vim-snipmate'
 
 
+Plugin 'Valloric/YouCompleteMe'
 
 if has("unix")
-	" Bundle 'Valloric/YouCompleteMe'
 	" Bundle 'derekwyatt/vim-scala'
     " Bundle 'fatih/vim-go'
     Plugin 'bitc/vim-hdevtools'
@@ -188,7 +188,6 @@ if has("autocmd")
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
     augroup END
 
-
 endif
 
 nnoremap <leader>m :CtrlPMRU<CR>
@@ -276,7 +275,6 @@ endfunction
 "	:g/^/m0
 "endfunction
 
-set viminfo=%,'50,\"100,n~/.viminfo
 
 :source $VIMRUNTIME/macros/matchit.vim
 
@@ -287,7 +285,9 @@ silent! colorscheme mymolokai
 
 syntax on
 
+set viminfo=%,'50,\"100,n~/.viminfo
 set number
+set diffopt=filler,vertical
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set undofile

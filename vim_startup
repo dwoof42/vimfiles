@@ -50,9 +50,9 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
 
+Plugin 'Valloric/YouCompleteMe'
 
 if has("unix")
-	" Bundle 'Valloric/YouCompleteMe'
 	" Bundle 'derekwyatt/vim-scala'
     " Bundle 'fatih/vim-go'
     Plugin 'bitc/vim-hdevtools'
@@ -176,7 +176,7 @@ if has("autocmd")
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
         au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
-		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=cabal\ build
+		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=stack\ build
         au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
@@ -291,5 +291,6 @@ set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set laststatus=2
 set undofile
+set diffopt=filler,vertical
 
 " vim:set ft=vim:ts=4 

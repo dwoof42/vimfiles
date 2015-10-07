@@ -63,8 +63,8 @@ call vundle#end()
 filetype plugin on
 
 " " ultisnips setup
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsExpandTrigger="<c-e>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " " If you want :UltiSnipsEdit to split your window.
@@ -141,7 +141,6 @@ if has("autocmd")
 		" au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
 		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
 		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
-		autocmd BufEnter,BufRead,BufNewFile *.xml.txt		setlocal filetype=xml equalprg=xmllint\ --format\ -
 		" Xaml
 		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
 		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml
@@ -175,7 +174,7 @@ if has("autocmd")
 		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
-        au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=xmllint\ --format\ -
+        au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
 		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=stack\ build
         au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
 

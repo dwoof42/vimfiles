@@ -230,6 +230,7 @@ nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>r :let @* = substitute(expand("%"),"\\","/","g")<CR>
 cnoremap sd :split %:h
 cnoremap gd :e %:h
+nnoremap <leader>w :set wrap!<CR>
 
 
 " set pastetoggle=<leader>pp

@@ -3,18 +3,11 @@ set nocompatible
 filetype off " vundle requires this
 set enc=utf-8
 
-if has("win32")
-	set directory=$HOME\vimfiles\backup,$TEMP
-	set backupdir=$HOME\vimfiles\backup,$TEMP
-    set undodir=$HOME\vimfiles\backup,$TEMP
-endif
+set directory=$HOME/.vim/backup
+set backupdir=$HOME/.vim/backup
+set undodir=$HOME/.vim/backup
 
-if has("unix")
-	set directory=$HOME/.vim/backup
-	set backupdir=$HOME/.vim/backup
-	set undodir=$HOME/.vim/backup
-endif
-
+set rtp+=$HOME/.vim
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 
 
@@ -44,6 +37,8 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'jsx/jsx.vim'
 Plugin 'KabbAmine/gulp-vim'
+
+Plugin 'OrangeT/vim-csharp'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -170,11 +165,12 @@ if has("autocmd")
 		au!
 		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile,Vagrantfile   setlocal ts=2 sts=2 sw=2 expandtab
 		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab 
-		au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
-		au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
+		" au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
+		" au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
 		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
 
         au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
+        au BufNewFile,BufRead,BufEnter *.csproj,*.sln  setlocal filetype=xml equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
 		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=stack\ build
         au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
 

@@ -7,7 +7,10 @@ set directory=$HOME/.vim/backup
 set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/backup
 
-set rtp+=$HOME/.vim
+if has('win32') || has('win64')
+    set rtp+=$HOME/.vim
+endif
+
 set rtp+=$HOME/.vim/bundle/Vundle.vim
 
 

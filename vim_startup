@@ -23,8 +23,6 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/taglist.vim'
-" probably obsoleted by ctrlp
-" Bundle 'vim-scripts/mru.vim'
 Plugin 'bufexplorer.zip'
 " Plugin 'sjl/gundo.vim'
 Plugin 'groenewege/vim-less'
@@ -34,18 +32,20 @@ Plugin 'mattn/emmet-vim'
 Plugin 'scrooloose/syntastic.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-scripts/aspnetcs.git'
-" Plugin 'SirVer/ultisnips'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'jsx/jsx.vim'
+" Plugin 'jsx/jsx.vim'
+Plugin 'mxw/vim-jsx'
 Plugin 'KabbAmine/gulp-vim'
 
 Plugin 'OrangeT/vim-csharp'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'SirVer/ultisnips'
+if has("python")
+    Plugin 'SirVer/ultisnips'
+endif
 
 
 Plugin 'Valloric/YouCompleteMe'
@@ -83,6 +83,7 @@ endfunction
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
+let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tslint']
@@ -90,8 +91,6 @@ let g:syntastic_typescript_checkers=['tslint']
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
-
-let g:syntastic_jsx_checkers=['eslint']
 
 let g:syntastic_always_populate_loc_list=1
 
@@ -186,6 +185,10 @@ if has("autocmd")
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
     augroup END
 
+    augroup jsx
+        au!
+        autocmd! BufEnter  *.jsx  let b:syntastic_checkers=['eslint']
+    augroup END
 
 endif
 
@@ -287,7 +290,7 @@ silent! colorscheme mymolokai
 syntax on
 
 set number
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set undofile
 set diffopt=filler,vertical

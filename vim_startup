@@ -230,7 +230,7 @@ nnoremap <leader>l :set list!<CR>
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>r :let @* = substitute(expand("%"),"\\","/","g")<CR>
-cnoremap sd :split %:h
+" cnoremap sd :split %:h
 cnoremap gd :e %:h
 nnoremap <leader>w :set wrap!<CR>
 

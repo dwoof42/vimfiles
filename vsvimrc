@@ -58,5 +58,5 @@ nnoremap <leader>i mpgggqG`pzz
 " clean up javacript
 nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\s\+if\\|else if\\|for\)(/\1 (/ge<CR>
 
-
+let @l='private readonly static NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();'
 

@@ -84,7 +84,7 @@ endfunction
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
 let g:syntastic_jsx_checkers=['eslint']
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tslint']
 
@@ -157,6 +157,7 @@ if has("autocmd")
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 
         autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
+        autocmd FileType json let &formatprg="js-beautify -q -j -f -" 
         autocmd FileType javascript let &makeprg="gulp"
         autocmd FileType html let &formatprg="html-beautify -q -f -" 
 
@@ -173,7 +174,7 @@ if has("autocmd")
 
         au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
         au BufNewFile,BufRead,BufEnter *.csproj,*.sln  setlocal filetype=xml equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
-		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=stack\ build
+		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=buildhaskell
         au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
 
 		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8

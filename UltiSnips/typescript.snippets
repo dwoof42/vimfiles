@@ -58,3 +58,50 @@ endsnippet
 snippet reference
 	/// <reference path="${0}" />
 endsnippet
+
+snippet service2
+import {Injectable} from 'angular2/core';
+import {LoggerService} from '../logger.service.ts';
+
+
+@Injectable()
+export class MyService {
+
+    constructor (private _logger : LoggerService) {
+    }
+
+}
+
+endsnippet
+
+snippet component2
+
+
+import {Component} from 'angular2/core';
+
+import {Alert} from 'ng2-angular/ng2-angular';
+import {AlertHtml} from './alert.html';
+import {AlertService} from './alert.service.ts';
+
+
+export interface IAlert {
+    message: string;
+    level: string;
+}
+
+@Component({
+    selector: 'dt-alert',
+    template: AlertHtml,
+    directives: [Alert]
+})
+
+export class AlertListComponent implements OnInit {
+
+    constructor(public service : AlertService) {
+
+    }
+
+}
+
+
+endsnippet

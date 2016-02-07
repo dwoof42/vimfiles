@@ -61,6 +61,7 @@ call vundle#end()
 filetype plugin on
 
 " " ultisnips setup
+let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"

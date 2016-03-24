@@ -35,8 +35,9 @@ Plugin 'vim-scripts/aspnetcs.git'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'clausreinke/typescript-tools.vim'
 " Plugin 'jsx/jsx.vim'
-Plugin 'mxw/vim-jsx'
+" Plugin 'mxw/vim-jsx'
 Plugin 'KabbAmine/gulp-vim'
 
 Plugin 'OrangeT/vim-csharp'
@@ -85,7 +86,7 @@ endfunction
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 
 let g:syntastic_jsx_checkers=['eslint']
-let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_checkers=['jshint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tslint']
 
@@ -185,6 +186,7 @@ if has("autocmd")
     augroup js
         au!
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
+        au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts
     augroup END
 
     augroup jsx
@@ -219,6 +221,7 @@ endif
 " gitttish things
 cabbrev Gt Gtabedit!
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
+nnoremap <leader>G :Gstatus<CR>
 
 nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
@@ -296,7 +299,11 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set undofile
 set diffopt=filler,vertical
+set backupcopy=yes
 
+" don't unzip zip fieles
+let g:loaded_zipPlugin= 1
+let g:loaded_zip      = 1
 
 " vim:set ft=vim:ts=4 
 

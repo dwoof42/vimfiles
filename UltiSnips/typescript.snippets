@@ -54,6 +54,28 @@ snippet service
 	}
 endsnippet
 
+snippet spec
+
+import {MainController} from './main.controller';
+
+describe('maincontroller', () => {
+    let mainController: MainController;
+
+    beforeEach(angular.mock.module('app'));
+
+    beforeEach(inject(($controller: angular.IControllerService) => {
+        webDevTec.data = [null, null, null, null, null];
+        // spyOn(toastr, 'info').and.callThrough();
+
+        mainController = $controller('MainController');
+    }));
+
+    it('should run a test', () => expect(1).toBeTruthy() );
+
+});
+
+
+endsnippet
 
 snippet reference
 	/// <reference path="${0}" />

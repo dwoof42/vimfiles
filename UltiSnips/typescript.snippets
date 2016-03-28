@@ -1,57 +1,49 @@
 snippet directive
-	module ${1} {
-	'use strict';
 
+/* @ngInject */
+export class FooController {
 
-		export class ${2}Controller {
-
-			constructor (log : ng.ILogService) {
-				log.log('hello world');
-			}
-		}
-
-		export function ${2}Directive {
-
-			return {
-				restrict: 'EA',
-				controller: ${2}Controller,
-				controllerAs: 'vm',
-				templateUrl: '${2}.html',
-				link: function (scope, element, attrs) {
-			};
-		}
+	constructor ($log : ng.ILogService) {
+		$log.log('hello world');
 	}
+}
+
+export function FooDirective {
+
+	return {
+		restrict: 'EA',
+		controller: FooController,
+		controllerAs: 'vm',
+		template: require('./foo.html'),
+		link: function (scope, element, attrs) {
+		}
+	};
+}
+
 
 endsnippet
 
 snippet controller
-	module ${1} {
-		'use strict';
+/* @ngInject */
+export class FooController {
 
-		export class ${2}Controller {
-			
-			constructor ($log : ng.ILogService) {
-			$log.log('hello world');
-			}
-
-		}
-
+	constructor ($log : ng.ILogService) {
+		$log.log('hello world');
 	}
+}
+
 endsnippet
 
 snippet service
-	module ${1} {
-		'use strict';
 
-		export class ${2}Service {
-			
-			constructor () {
-				${0}
-			}
-
-		}
-
+export class FooService {
+	
+	constructor ($log: ng.ILogService) {
+		$log.log('hi there');
 	}
+
+}
+
 endsnippet
 
 snippet spec
@@ -59,18 +51,18 @@ snippet spec
 import {MainController} from './main.controller';
 
 describe('maincontroller', () => {
-    let mainController: MainController;
+	let mainController: MainController;
 
-    beforeEach(angular.mock.module('app'));
+	beforeEach(angular.mock.module('app'));
 
-    beforeEach(inject(($controller: angular.IControllerService) => {
-        webDevTec.data = [null, null, null, null, null];
-        // spyOn(toastr, 'info').and.callThrough();
+	beforeEach(inject(($controller: angular.IControllerService) => {
+		webDevTec.data = [null, null, null, null, null];
+		// spyOn(toastr, 'info').and.callThrough();
 
-        mainController = $controller('MainController');
-    }));
+		mainController = $controller('MainController');
+	}));
 
-    it('should run a test', () => expect(1).toBeTruthy() );
+	it('should run a test', () => expect(1).toBeTruthy() );
 
 });
 
@@ -89,8 +81,8 @@ import {LoggerService} from '../logger.service.ts';
 @Injectable()
 export class MyService {
 
-    constructor (private _logger : LoggerService) {
-    }
+	constructor (private _logger : LoggerService) {
+	}
 
 }
 
@@ -107,21 +99,21 @@ import {AlertService} from './alert.service.ts';
 
 
 export interface IAlert {
-    message: string;
-    level: string;
+	message: string;
+	level: string;
 }
 
 @Component({
-    selector: 'dt-alert',
-    template: AlertHtml,
-    directives: [Alert]
+	selector: 'dt-alert',
+	template: AlertHtml,
+	directives: [Alert]
 })
 
 export class AlertListComponent implements OnInit {
 
-    constructor(public service : AlertService) {
+	constructor(public service : AlertService) {
 
-    }
+	}
 
 }
 

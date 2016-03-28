@@ -35,7 +35,10 @@ Plugin 'vim-scripts/aspnetcs.git'
 Plugin 'vim-scripts/logstash.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'clausreinke/typescript-tools.vim'
+" Plugin 'clausreinke/typescript-tools.vim'
+
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Quramy/tsuquyomi'
 " Plugin 'jsx/jsx.vim'
 " Plugin 'mxw/vim-jsx'
 Plugin 'KabbAmine/gulp-vim'
@@ -84,6 +87,11 @@ endfunction
 " let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
+
+if !exists("g:ycm_semantic_triggers")
+   let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['jshint']
@@ -197,7 +205,6 @@ if has("autocmd")
 endif
 
 nnoremap <leader>m :CtrlPMRU<CR>
-
 nnoremap <leader>y mmya}V%y
 
 " a cheap way to compile the current module
@@ -220,6 +227,7 @@ endif
 
 " gitttish things
 cabbrev Gt Gtabedit!
+cabbrev Gm Gcommit -am 
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
 nnoremap <leader>G :Gstatus<CR>
 

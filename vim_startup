@@ -207,6 +207,11 @@ endif
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
 
+" tsuquyomi 
+nnoremap <leader>q :cclose<CR>:lclose<CR>
+
+" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
+
 " a cheap way to compile the current module
 " nnoremap <leader>p :python -c "import %"<cr>
 
@@ -312,6 +317,8 @@ set backupcopy=yes
 " don't unzip zip fieles
 let g:loaded_zipPlugin= 1
 let g:loaded_zip      = 1
+
+
 
 " vim:set ft=vim:ts=4 
 

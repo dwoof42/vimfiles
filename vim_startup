@@ -53,16 +53,12 @@ if has("python")
     Plugin 'SirVer/ultisnips'
     " Plugin 'Valloric/YouCompleteMe'
 endif
-
-
-
 " Plugin 'jsx/jsx.vim'
 " Plugin 'mxw/vim-jsx'
 " Plugin 'clausreinke/typescript-tools.vim'
 
 " Plugin 'MarcWeber/vim-addon-mw-utils'
 " Plugin 'tomtom/tlib_vim'
-
 
 
 if has("unix")
@@ -80,6 +76,7 @@ let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" let g:tsuquyomi_debug=1
 
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
@@ -111,7 +108,7 @@ endfunction
 " let g:ycm_semantic_triggers['typescript'] = ['.']
 
 let g:syntastic_jsx_checkers=['eslint']
-let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tslint']
 

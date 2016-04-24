@@ -117,5 +117,30 @@ export class AlertListComponent implements OnInit {
 
 }
 
+endsnippet
+
+snippet pipe2
+
+import {Pipe, PipeTransform} from 'angular2/core';
+import {IProduct} from './product';
+
+@Pipe({
+    name: 'productFilter'
+})
+export class ProductFilterPipe implements PipeTransform {
+
+    transform(value: IProduct[], args: string[]): IProduct[] {
+        if (!(args && args[0])) {
+            return value;
+        }
+        let filter = args[0].toLocaleLowerCase();
+        return value.filter(p => this.lowerName(p).indexOf(filter) >= 0);
+    }
+
+    lowerName (product: IProduct): string  {
+        return product.productName.toLocaleLowerCase();
+    }
+
+}
 
 endsnippet

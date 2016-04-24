@@ -144,3 +144,21 @@ export class ProductFilterPipe implements PipeTransform {
 }
 
 endsnippet
+
+
+snippet resource
+
+
+export interface IKitten extends ng.resource.IResource<IKitten>{
+    _id: string;
+    name: string;
+    type: string;
+}
+
+export interface IKittenResource extends ng.resource.IResourceClass<IKitten> {
+    update: ng.resource.IResourceMethod<IKitten>;
+}
+
+// this.kittenResource = <IKittenResource> $resource('/api/kittens/:id', { id: '@_id' }, null);
+
+endsnippet

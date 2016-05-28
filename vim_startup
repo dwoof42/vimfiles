@@ -208,7 +208,7 @@ if has("autocmd")
     augroup js
         au!
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
-        au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts
+        au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts ts=4 sts=4 sw=4 expandtab
     augroup END
 
     augroup jsx

@@ -48,23 +48,25 @@ endsnippet
 
 snippet spec
 
+/// <reference path="../../typings/index.d.ts" />
+
+import '../index.module';
 import {MainController} from './main.controller';
 
 describe('maincontroller', () => {
-	let mainController: MainController;
+    let controller: MainController;
 
-	beforeEach(angular.mock.module('app'));
+    beforeEach(angular.mock.module('app'));
 
-	beforeEach(inject(($controller: angular.IControllerService) => {
-		webDevTec.data = [null, null, null, null, null];
-		// spyOn(toastr, 'info').and.callThrough();
+    beforeEach(inject(() => {
 
-		mainController = $controller('MainController');
-	}));
+        controller = new MainController();
+    }));
 
-	it('should run a test', () => expect(1).toBeTruthy() );
+    it('should run a test', () => expect(controller).toBeTruthy() );
 
 });
+
 
 
 endsnippet

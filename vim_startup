@@ -255,7 +255,7 @@ nnoremap <leader>G :Gstatus<CR>
 nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 
-nmap <leader>t :TlistToggle<CR>
+nmap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>s :SyntasticToggleMode<CR>
 
@@ -275,7 +275,7 @@ nnoremap <leader>w :set wrap!<CR>
 let Tlist_GainFocus_On_ToggleOpen = 1
 
 
-let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|bower_components)$'
+let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|bower_components|jspm_components)$'
 
 " set listchars=tab:?\ ,eol:Â¬
 set listchars=tab:>\ ,eol:$,trail:·

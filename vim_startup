@@ -232,7 +232,7 @@ let g:tsuquyomi_debug=0
 nnoremap <leader>r :TsuRenameSymbol<CR>
 nnoremap <leader>q :cclose<CR>:lclose<CR>
 nnoremap <S-F12> :TsuReferences<CR>
-
+nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
 
 nnoremap <leader>A :'<,'>s/^\s*public \([\a\d]\+\)\(\??\) \(\h\)\(\S\+\) /\l\2\3\4: \1/<cr>gv:'<,'>s/int{.*/number;/<cr>gv:'<,'>s/string{.*/string;/<cr>gv:'<,'>s/DateTime{.*/date;<cr>gv:'<,'>s/bool{.*/boolean;/<cr>
 
@@ -265,8 +265,6 @@ nnoremap <leader>G :Gstatus<CR>
 nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 
-nmap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
-nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>l :set list!<CR>

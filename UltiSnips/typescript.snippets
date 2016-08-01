@@ -164,3 +164,39 @@ export interface IKittenResource extends ng.resource.IResourceClass<IKitten> {
 // this.kittenResource = <IKittenResource> $resource('/api/kittens/:id', { id: '@_id' }, null);
 
 endsnippet
+
+snippet component
+
+declare var require: any;
+
+/** @ngInject */
+export class SpeakerHeaderController {
+
+    itemPager: Pager;
+    onChange: any;
+
+    constructor () {
+    }
+
+
+}
+
+export const SpeakerHeaderComponent: ng.IComponentOptions = {
+    bindings: {
+        speakerId: '<'
+    },
+    controller: SpeakerHeaderController,
+    template: `
+        <div class="row">
+            <div class="col-md-4">
+                {{vm.speaker.email}}<br />
+                {{vm.speaker.phone}}<br />
+            </div>
+        </div>
+    `
+};
+
+
+
+
+endsnippet

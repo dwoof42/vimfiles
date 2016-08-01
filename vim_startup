@@ -126,7 +126,7 @@ let g:syntastic_always_populate_loc_list=1
 " go settings
 let g:go_fmt_fail_silently=1
 
-let g:ctrlp_mruf_exclude = '.git/*|*.tmp|node_modules'
+let g:ctrlp_mruf_exclude = '.git/*|*.tmp|node_modules|jspm_components|coverage'
 
 
 " from vimcasts, a script to change tab settings

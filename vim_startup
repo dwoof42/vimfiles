@@ -76,17 +76,20 @@ let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" let g:tsuquyomi_debug=1
 
 " " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
 let g:neocomplete#enable_at_startup = 1
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
+" let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
 
 " Syntastic setup
@@ -224,7 +227,10 @@ nnoremap <leader>y mmya}V%y
 " tsuquyomi 
 let g:tsuquyomi_auto_open=1
 let g:tsuquyomi_debug=0
+nnoremap <leader>r :TsuRenameSymbol<CR>
 nnoremap <leader>q :cclose<CR>:lclose<CR>
+nnoremap <S-F12> :TsuReferences<CR>
+
 
 nnoremap <leader>A :'<,'>s/^\s*public \([\a\d]\+\)\(\??\) \(\h\)\(\S\+\) /\l\2\3\4: \1/<cr>gv:'<,'>s/int{.*/number;/<cr>gv:'<,'>s/string{.*/string;/<cr>gv:'<,'>s/DateTime{.*/date;<cr>gv:'<,'>s/bool{.*/boolean;/<cr>
 
@@ -265,7 +271,7 @@ nnoremap <leader>l :set list!<CR>
 
 nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
-nnoremap <leader>r :let @* = substitute(expand("%"),"\\","/","g")<CR>
+nnoremap <leader>R :let @* = substitute(expand("%"),"\\","/","g")<CR>
 " cnoremap sd :split %:h
 cnoremap gd :e %:h
 nnoremap <leader>w :set wrap!<CR>

@@ -234,8 +234,10 @@ nnoremap <leader>q :cclose<CR>:lclose<CR>
 nnoremap <S-F12> :TsuReferences<CR>
 nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
 
-nnoremap <leader>A :'<,'>s/^\s*public \([\a\d]\+\)\(\??\) \(\h\)\(\S\+\) /\l\2\3\4: \1/<cr>gv:'<,'>s/int{.*/number;/<cr>gv:'<,'>s/string{.*/string;/<cr>gv:'<,'>s/DateTime{.*/date;<cr>gv:'<,'>s/bool{.*/boolean;/<cr>
-
+nnoremap <leader>A :%s/^\s*public \([a-zA-Z0-9]\+\)\(?\?\) \(\h\)\(\S\+\) /\l\3\4\2: \1/<cr>:%s/int{.*/number;/<cr>:%s/string{.*/string;/<cr>:%s/DateTime{.*/date;<cr>:%s/bool{.*/boolean;/<cr>
+nnoremap <leader>T :%s/^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$/<th ng-click="vm.pager.updateSort('\l\1\2')" class="clickable">\u\1\2</th>/<cr>
+nnoremap <leader>D :%s#^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$#<td>{{item.\l\1\2}}</td>#<cr>
+" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
 " nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
 
 " a cheap way to compile the current module

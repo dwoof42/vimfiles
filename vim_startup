@@ -54,7 +54,8 @@ if has("python")
     " Plugin 'Valloric/YouCompleteMe'
 endif
 " Plugin 'jsx/jsx.vim'
-" Plugin 'mxw/vim-jsx'
+Plugin 'Pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 " Plugin 'clausreinke/typescript-tools.vim'
 
 " Plugin 'MarcWeber/vim-addon-mw-utils'

@@ -230,6 +230,7 @@ nnoremap <leader>y mmya}V%y
 " tsuquyomi 
 let g:tsuquyomi_auto_open=1
 let g:tsuquyomi_debug=0
+let g:tsuquyomi_disable_quickfix=1
 nnoremap <leader>r :TsuRenameSymbol<CR>
 nnoremap <leader>q :cclose<CR>:lclose<CR>
 nnoremap <S-F12> :TsuReferences<CR>

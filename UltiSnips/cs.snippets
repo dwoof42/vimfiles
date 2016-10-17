@@ -3,3 +3,8 @@ snippet nlogger
 	private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 endsnippet
 
+snippet camelcase
+	[JsonConverter(typeof(CamelCaseStringEnumConverter))]
+endsnippet
+
+

@@ -9,14 +9,14 @@ if has("gui_win32")
 	au GUIEnter * simalt ~x
 	" I need to review these options to see what they mean
 	" set vb t_vb=
-	set gfn=Consolas:h16:cANSI
+	set gfn=Consolas:h14:cANSI
 	set guioptions=gmcet
 	" set t_md=0
 	" see :help gui-win32=maximized
 
 elseif has("gui")
 	behave xterm
-	set gfn=Inconsolata\ 17
+	set gfn=Inconsolata\ 14
 	set guioptions=gce
 "	winpos 0 0
 "	set lines=38

@@ -49,7 +49,7 @@ if has("lua")
     Plugin 'Shougo/neocomplete.vim'
 endif
 
-if has("python")
+if has("python3")
     Plugin 'SirVer/ultisnips'
     " Plugin 'Valloric/YouCompleteMe'
 endif

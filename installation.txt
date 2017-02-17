@@ -19,6 +19,7 @@ git clone	https://github.com/tpope/vim-surround.git
 git clone	https://github.com/tpope/vim-unimpaired.git
 git clone	https://github.com/Shougo/vimproc.vim.git
 git clone https://github.com/SirVer/ultisnips.git
+git clone https://github.com/powerman/vim-plugin-AnsiEsc.git
 
 download vimproc from https://github.com/Shougo/vimproc.vim/releases
 

@@ -61,3 +61,7 @@ nnoremap <leader>j :%s/\s\+$//ge<CR>:%s/\s\+$//ge<CR>:%s/\(function\\|typeof\\|\
 let @l='private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();'
 let @c='[JsonConverter(typeof(CamelCaseStringEnumConverter))]'
 
+
+nnoremap & ^
+
+

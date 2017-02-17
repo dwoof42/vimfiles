@@ -23,3 +23,69 @@ snippet angular-test
 
 endsnippet
 
+snippet redux-component
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
+
+class ManageCoursePage extends React.Component {
+
+  constructor (props, context) {
+    super(props, context);
+  }
+
+  render () {
+    return (
+      <div></div>
+    );
+  }
+}
+
+ManageCoursePage.propTypes = {
+    // myprop: PropTypes.string.isRequired
+};
+
+function mapStateToProps (state, ownProps) {
+  return {
+    state: state
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageCoursePage);
+
+
+endsnippet
+
+snippet stateless-component
+import React, {PropTypes} from 'react';
+
+
+const TextInput = ({first, second}) => {
+  return (
+      <div>{first}</div>
+  );
+}
+
+
+TextInput.propTypes = {
+    first: React.PropTypes.object.isRequired,
+    second: React.PropTypes.object.isRequired
+};
+
+
+export default TextInput;
+
+
+
+endsnippet
+
+
+

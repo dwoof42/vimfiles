@@ -1,135 +1,163 @@
 " Always remember this file is sourced by both the unix and Win32 versions
 set nocompatible
-filetype off " vundle requires this
+"filetype off " vundle requires this
 set enc=utf-8
-
+"
 set directory=$HOME/.vim/backup
 set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/backup
 
 if has('win32') || has('win64')
     set rtp+=$HOME/.vim
+    " set packpath+=$HOME/.vim/bundle
 endif
 
-set rtp+=$HOME/.vim/bundle/Vundle.vim
 
-
-
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-commentary'
-" Plugin 'tpope/vim-vinegar'
-
-" Plugin 'vim-scripts/taglist.vim'
-" Plugin 'sjl/gundo.vim'
-
-Plugin 'bufexplorer.zip'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/AnsiEsc.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/syntastic.git'
-Plugin 'scrooloose/nerdtree.git'
-" formatting 
-Plugin 'groenewege/vim-less'
-Plugin 'vim-scripts/aspnetcs.git'
-Plugin 'vim-scripts/logstash.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'KabbAmine/gulp-vim'
-Plugin 'OrangeT/vim-csharp'
-
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Quramy/tsuquyomi'
-
-if has("lua")
-    Plugin 'Shougo/neocomplete.vim'
-endif
-
-if has("python3")
-    Plugin 'SirVer/ultisnips'
-    " Plugin 'Valloric/YouCompleteMe'
-endif
-" Plugin 'jsx/jsx.vim'
-Plugin 'Pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-" Plugin 'clausreinke/typescript-tools.vim'
-
-" Plugin 'MarcWeber/vim-addon-mw-utils'
-" Plugin 'tomtom/tlib_vim'
-
-
-if has("unix")
-	" Bundle 'derekwyatt/vim-scala'
-    " Bundle 'fatih/vim-go'
-    Plugin 'bitc/vim-hdevtools'
-    Plugin 'Twinside/vim-hoogle'
-endif
-
-call vundle#end()
-filetype plugin on
-
-" " ultisnips setup
+"set rtp+=$HOME/.vim/bundle/Vundle.vim
+"
+"
+"
+"call vundle#begin()
+"
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-unimpaired'
+"Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-commentary'
+"" Plugin 'tpope/vim-vinegar'
+"
+"" Plugin 'vim-scripts/taglist.vim'
+"" Plugin 'sjl/gundo.vim'
+"
+"Plugin 'bufexplorer.zip'
+"Plugin 'kien/ctrlp.vim'
+"Plugin 'vim-scripts/AnsiEsc.vim'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'scrooloose/syntastic.git'
+"Plugin 'scrooloose/nerdtree.git'
+"" formatting 
+"Plugin 'groenewege/vim-less'
+"Plugin 'vim-scripts/aspnetcs.git'
+"Plugin 'vim-scripts/logstash.vim'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'leafgarland/typescript-vim'
+"Plugin 'KabbAmine/gulp-vim'
+"Plugin 'OrangeT/vim-csharp'
+"
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Quramy/tsuquyomi'
+"
+"Plugin 'editorconfig/editorconfig-vim'
+"
+"if has("lua")
+"    Plugin 'Shougo/neocomplete.vim'
+"endif
+"
+"if has("python3")
+"    Plugin 'SirVer/ultisnips'
+"    " Plugin 'Valloric/YouCompleteMe'
+"endif
+"" Plugin 'jsx/jsx.vim'
+"Plugin 'Pangloss/vim-javascript'
+"Plugin 'mxw/vim-jsx'
+"" Plugin 'clausreinke/typescript-tools.vim'
+"
+"" Plugin 'MarcWeber/vim-addon-mw-utils'
+"" Plugin 'tomtom/tlib_vim'
+"
+"
+"if has("unix")
+"	" Bundle 'derekwyatt/vim-scala'
+"    " Bundle 'fatih/vim-go'
+"    Plugin 'bitc/vim-hdevtools'
+"    Plugin 'Twinside/vim-hoogle'
+"endif
+"
+"call vundle#end()
+"filetype plugin on
+"
+"" " ultisnips setup
 let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"
 " let g:UltiSnipsJumpForwardTrigger="<c-b>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"
+"" " If you want :UltiSnipsEdit to split your window.
+"" let g:UltiSnipsEditSplit="vertical"
+"
+let g:neocomplete#enable_at_startup = 1
+ if !exists('g:neocomplete#force_omni_input_patterns')
+     let g:neocomplete#force_omni_input_patterns = {}
+ endif
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
-" " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
+let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
-if has("lua")
-    let g:neocomplete#enable_at_startup = 1
-    " if !exists('g:neocomplete#force_omni_input_patterns')
-    "     let g:neocomplete#force_omni_input_patterns = {}
-    " endif
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"
+"" Syntastic setup
+"function! FindCabalSandboxRoot()
+"    return finddir('.cabal-sandbox', './;')
+"endfunction
+"
+"function! FindCabalSandboxRootPackageConf()
+"    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
+"endfunction
+"
+
+let g:neosnippet#disable_runtime_snippets={'_':1}
+let g:neosnippet#snippets_directory='~/.vim/UltiSnips'
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=0 concealcursor=niv
 endif
 
-" let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
-
-
-" Syntastic setup
-function! FindCabalSandboxRoot()
-    return finddir('.cabal-sandbox', './;')
-endfunction
-
-function! FindCabalSandboxRootPackageConf()
-    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
-endfunction
+set ballooneval
 
 " let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
-
-" if !exists("g:ycm_semantic_triggers")
-"    let g:ycm_semantic_triggers = {}
-" endif
-" let g:ycm_semantic_triggers['typescript'] = ['.']
+"
+"" if !exists("g:ycm_semantic_triggers")
+""    let g:ycm_semantic_triggers = {}
+"" endif
+"" let g:ycm_semantic_triggers['typescript'] = ['.']
+"
 
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
 let g:syntastic_typescript_checkers=['tslint']
-
+"
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
-
+"
 let g:syntastic_always_populate_loc_list=1
-
-" go settings
-let g:go_fmt_fail_silently=1
-
+"
+"" go settings
+"let g:go_fmt_fail_silently=1
+"
 let g:ctrlp_mruf_exclude = '.git/*|*.tmp|node_modules|jspm_components|coverage'
-
-
+"
+"
 " from vimcasts, a script to change tab settings
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
@@ -142,26 +170,26 @@ function! Stab()
 	endif
 	call SummarizeTabs()
 endfunction
-
-function! SummarizeTabs()
-	try
-		echohl ModeMsg
-		echon 'tabstop='.&l:ts
-		echon ' shiftwidth='.&l:sw
-		echon ' softtabstop='.&l:sts
-		if &l:et
-			echon ' expandtab'
-		else
-			echon ' noexpandtab'
-		endif
-	finally
-		echohl None
-	endtry
-endfunction
-
-
-" from vimrc_example
-" Only do this part when compiled with support for autocommands
+"
+"function! SummarizeTabs()
+"	try
+"		echohl ModeMsg
+"		echon 'tabstop='.&l:ts
+"		echon ' shiftwidth='.&l:sw
+"		echon ' softtabstop='.&l:sts
+"		if &l:et
+"			echon ' expandtab'
+"		else
+"			echon ' noexpandtab'
+"		endif
+"	finally
+"		echohl None
+"	endtry
+"endfunction
+"
+"
+"" from vimrc_example
+"" Only do this part when compiled with support for autocommands
 if has("autocmd")
 	" enable our plugins
 	augroup filetypedetect
@@ -174,7 +202,7 @@ if has("autocmd")
 
 	augroup END
 
-
+"
 	augroup cprog
 		" Remove all cprog autocommands
 		au!
@@ -190,7 +218,8 @@ if has("autocmd")
         autocmd FileType json let &formatprg="js-beautify -q -j -f -" 
         autocmd FileType javascript let &makeprg="gulp"
         autocmd FileType html let &formatprg="html-beautify -q -f -" 
-
+        autocmd FileType typescript JsPreTmpl html
+        autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
 	augroup END
 
 
@@ -215,6 +244,7 @@ if has("autocmd")
         au!
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
         au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts ts=4 sts=4 sw=4 expandtab
+        " autocmd FileType typescript syn clear foldBraces
     augroup END
 
     augroup jsx
@@ -223,44 +253,45 @@ if has("autocmd")
     augroup END
 
 endif
-
+"
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
-
-" tsuquyomi 
+"
+"" tsuquyomi 
 let g:tsuquyomi_auto_open=1
 let g:tsuquyomi_debug=0
 let g:tsuquyomi_disable_quickfix=1
-nnoremap <leader>r :TsuRenameSymbol<CR>
-nnoremap <leader>q :cclose<CR>:lclose<CR>
-nnoremap <S-F12> :TsuReferences<CR>
-nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
 
+"nnoremap <leader>r :TsuRenameSymbol<CR>
+"nnoremap <leader>q :cclose<CR>:lclose<CR>
+"nnoremap <S-F12> :TsuReferences<CR>
+"nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
+"
 nnoremap <leader>A :%s/^\s*public \([a-zA-Z0-9]\+\)\(?\?\) \(\h\)\(\S\+\) /\l\3\4\2: \1/<cr>:%s/int{.*/number;/<cr>:%s/string{.*/string;/<cr>:%s/DateTime{.*/date;<cr>:%s/bool{.*/boolean;/<cr>
 nnoremap <leader>T :%s/^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$/<th ng-click="vm.pager.updateSort('\l\1\2')" class="clickable">\u\1\2</th>/<cr>
 nnoremap <leader>D :%s#^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$#<td>{{item.\l\1\2}}</td>#<cr>
-" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
-" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
-
-" a cheap way to compile the current module
-" nnoremap <leader>p :python -c "import %"<cr>
-
-" map the F1 key to escape in insert mode in case i hit it accidentally
+"" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
+"" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
+"
+"" a cheap way to compile the current module
+"" nnoremap <leader>p :python -c "import %"<cr>
+"
+"" map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>
-
-" and I often want to execute the current script
-if has("unix")
-    noremap <leader>e :!./%<CR>
-    nnoremap <leader>x :!chmod +x %<cr><cr>
-    " write as root, but leave the Load prompt after
-    cnoremap w!! w !sudo tee % >/dev/null<CR>
-endif
-
-" xml format
-" nnoremap <leader>x :%s/\(<[^>]*>\)/\n\1/g<CR>1G=G
-
-
-" gitttish things
+"
+"" and I often want to execute the current script
+"if has("unix")
+"    noremap <leader>e :!./%<CR>
+"    nnoremap <leader>x :!chmod +x %<cr><cr>
+"    " write as root, but leave the Load prompt after
+"    cnoremap w!! w !sudo tee % >/dev/null<CR>
+"endif
+"
+"" xml format
+"" nnoremap <leader>x :%s/\(<[^>]*>\)/\n\1/g<CR>1G=G
+"
+"
+"" gitttish things
 cabbrev Gt Gtabedit!
 cabbrev Gm Gcommit -am 
 nnoremap <leader>g :Gtabedit! lg<CR>:AnsiEsc<CR>
@@ -283,10 +314,8 @@ nnoremap <leader>w :set wrap!<CR>
 
 " set pastetoggle=<leader>pp
 
-" Taglist 
-let Tlist_GainFocus_On_ToggleOpen = 1
-
-
+"
+"
 let g:ctrlp_custom_ignore = '\v[\/](\.git|\.hg|\.svn|node_modules|bower_components|jspm_components)$'
 
 " set listchars=tab:?\ ,eol:Â¬
@@ -328,25 +357,25 @@ set viminfo=%,'50,\"100,n~/.viminfo
 
 :source $VIMRUNTIME/macros/matchit.vim
 
-
+"
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
 silent! colorscheme mymolokai
-
-syntax on
-
+"
 set number
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set undofile
 set diffopt=filler,vertical
 set backupcopy=yes
-
+"
 " don't unzip zip fieles
-let g:loaded_zipPlugin= 1
+"let g:loaded_zipPlugin= 1
 let g:loaded_zip      = 1
-
-
-
+"
+"" temp for broken keyboard
+"nnoremap & ^
+"
+"
 " vim:set ft=vim:ts=4 
-
+"

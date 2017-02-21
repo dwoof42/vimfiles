@@ -12,68 +12,6 @@ if has('win32') || has('win64')
     " set packpath+=$HOME/.vim/bundle
 endif
 
-
-"set rtp+=$HOME/.vim/bundle/Vundle.vim
-"
-"
-"
-"call vundle#begin()
-"
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'tpope/vim-unimpaired'
-"Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-commentary'
-"" Plugin 'tpope/vim-vinegar'
-"
-"" Plugin 'vim-scripts/taglist.vim'
-"" Plugin 'sjl/gundo.vim'
-"
-"Plugin 'bufexplorer.zip'
-"Plugin 'kien/ctrlp.vim'
-"Plugin 'vim-scripts/AnsiEsc.vim'
-"Plugin 'mattn/emmet-vim'
-"Plugin 'scrooloose/syntastic.git'
-"Plugin 'scrooloose/nerdtree.git'
-"" formatting 
-"Plugin 'groenewege/vim-less'
-"Plugin 'vim-scripts/aspnetcs.git'
-"Plugin 'vim-scripts/logstash.vim'
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'KabbAmine/gulp-vim'
-"Plugin 'OrangeT/vim-csharp'
-"
-"Plugin 'Shougo/vimproc.vim'
-"Plugin 'Quramy/tsuquyomi'
-"
-"Plugin 'editorconfig/editorconfig-vim'
-"
-"if has("lua")
-"    Plugin 'Shougo/neocomplete.vim'
-"endif
-"
-"if has("python3")
-"    Plugin 'SirVer/ultisnips'
-"    " Plugin 'Valloric/YouCompleteMe'
-"endif
-"" Plugin 'jsx/jsx.vim'
-"Plugin 'Pangloss/vim-javascript'
-"Plugin 'mxw/vim-jsx'
-"" Plugin 'clausreinke/typescript-tools.vim'
-"
-"" Plugin 'MarcWeber/vim-addon-mw-utils'
-"" Plugin 'tomtom/tlib_vim'
-"
-"
-"if has("unix")
-"	" Bundle 'derekwyatt/vim-scala'
-"    " Bundle 'fatih/vim-go'
-"    Plugin 'bitc/vim-hdevtools'
-"    Plugin 'Twinside/vim-hoogle'
-"endif
-"
-"call vundle#end()
 "filetype plugin on
 "
 "" " ultisnips setup
@@ -144,7 +82,7 @@ set ballooneval
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-let g:syntastic_typescript_checkers=['tslint']
+let g:syntastic_typescript_checkers=['tsuquyomi']
 "
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -214,10 +152,10 @@ if has("autocmd")
 		autocmd FileType *      set formatoptions=tcql nocindent comments&
 		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
 
-        autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
-        autocmd FileType json let &formatprg="js-beautify -q -j -f -" 
+        " autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
+        " autocmd FileType json let &formatprg="js-beautify -q -j -f -" 
         autocmd FileType javascript let &makeprg="gulp"
-        autocmd FileType html let &formatprg="html-beautify -q -f -" 
+        " autocmd FileType html let &formatprg="html-beautify -q -f -" 
         autocmd FileType typescript JsPreTmpl html
         autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
 	augroup END
@@ -261,7 +199,7 @@ nnoremap <leader>y mmya}V%y
 let g:tsuquyomi_auto_open=1
 let g:tsuquyomi_debug=0
 let g:tsuquyomi_disable_quickfix=1
-
+let g:tsuquyomi_use_local_typescript=0
 "nnoremap <leader>r :TsuRenameSymbol<CR>
 "nnoremap <leader>q :cclose<CR>:lclose<CR>
 "nnoremap <S-F12> :TsuReferences<CR>

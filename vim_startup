@@ -27,42 +27,28 @@ let g:neocomplete#enable_at_startup = 1
  if !exists('g:neocomplete#force_omni_input_patterns')
      let g:neocomplete#force_omni_input_patterns = {}
  endif
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+ if exists('g:loaded_neocomplete')
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+endif
 
 let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 
 "
-"" Syntastic setup
-"function! FindCabalSandboxRoot()
-"    return finddir('.cabal-sandbox', './;')
-"endfunction
-"
-"function! FindCabalSandboxRootPackageConf()
-"    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
-"endfunction
-"
+" Syntastic setup
+function! FindCabalSandboxRoot()
+    return finddir('.cabal-sandbox', './;')
+endfunction
 
-let g:neosnippet#disable_runtime_snippets={'_':1}
-let g:neosnippet#snippets_directory='~/.vim/UltiSnips'
+function! FindCabalSandboxRootPackageConf()
+    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
+endfunction
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" For conceal markers.
+" For conceal markers, I like to keep it off
 if has('conceal')
   set conceallevel=0 concealcursor=niv
 endif
@@ -242,7 +228,7 @@ nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>l :set list!<CR>
 
-nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
+nnoremap <leader>p :TsuImport<CR>
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>R :let @* = substitute(expand("%"),"\\","/","g")<CR>
 " cnoremap sd :split %:h

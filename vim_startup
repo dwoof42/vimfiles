@@ -24,17 +24,20 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 "" let g:UltiSnipsEditSplit="vertical"
 "
 let g:neocomplete#enable_at_startup = 1
- if !exists('g:neocomplete#force_omni_input_patterns')
-     let g:neocomplete#force_omni_input_patterns = {}
- endif
- if exists('g:loaded_neocomplete')
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+if exists('g:loaded_neocomplete')
     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
     " <C-h>, <BS>: close popup and delete backword char.
     inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
     inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 endif
 
-let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
+endif
 
 "
 " Syntastic setup
@@ -192,6 +195,7 @@ let g:tsuquyomi_single_quote_import=1
 "nnoremap <leader>q :cclose<CR>:lclose<CR>
 "nnoremap <S-F12> :TsuReferences<CR>
 "nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
+nnoremap <leader>p :TsuImport<CR>
 "
 nnoremap <leader>A :%s/^\s*public \([a-zA-Z0-9]\+\)\(?\?\) \(\h\)\(\S\+\) /\l\3\4\2: \1/<cr>:%s/int{.*/number;/<cr>:%s/string{.*/string;/<cr>:%s/DateTime{.*/date;<cr>:%s/bool{.*/boolean;/<cr>
 nnoremap <leader>T :%s/^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$/<th ng-click="vm.pager.updateSort('\l\1\2')" class="clickable">\u\1\2</th>/<cr>
@@ -231,6 +235,7 @@ nnoremap <leader>s :SyntasticToggleMode<CR>
 nnoremap <leader>l :set list!<CR>
 
 nnoremap <leader>p :TsuImport<CR>
+" nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>R :let @* = substitute(expand("%"),"\\","/","g")<CR>
 " cnoremap sd :split %:h

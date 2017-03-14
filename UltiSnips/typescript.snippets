@@ -200,3 +200,26 @@ export const SpeakerHeaderComponent: ng.IComponentOptions = {
 
 
 endsnippet
+
+snippet e3service
+
+import { Injectable } from '@angular/core';
+import { CoreRestServiceBase, RestServiceParametersService } from '@e3/design';
+import { IRetailStoresSearchCriteria } from '../models/retail-stores-search-criteria';
+
+const params: any = {
+    url: '/api/retail/storesearch'
+};
+
+
+@Injectable()
+export class StoresSearchService extends CoreRestServiceBase<IRetailStoresSearchCriteria> {
+
+    constructor (factory: RestServiceParametersService) {
+        super(factory.getParams(params));
+    }
+}
+
+
+
+endsnippet

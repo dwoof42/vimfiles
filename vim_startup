@@ -68,7 +68,8 @@ set ballooneval
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-let g:syntastic_typescript_checkers=['tsuquyomi']
+" let g:syntastic_typescript_checkers=['tsuquyomi']
+let g:syntastic_typescript_checkers=['tslint']
 "
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -167,7 +168,7 @@ if has("autocmd")
     augroup js
         au!
         au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
-        au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts ts=4 sts=4 sw=4 expandtab
+        " au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts ts=4 sts=4 sw=4 expandtab
         " autocmd FileType typescript syn clear foldBraces
     augroup END
 
@@ -186,6 +187,7 @@ let g:tsuquyomi_auto_open=1
 let g:tsuquyomi_debug=0
 let g:tsuquyomi_disable_quickfix=1
 let g:tsuquyomi_use_local_typescript=0
+let g:tsuquyomi_single_quote_import=1
 "nnoremap <leader>r :TsuRenameSymbol<CR>
 "nnoremap <leader>q :cclose<CR>:lclose<CR>
 "nnoremap <S-F12> :TsuReferences<CR>
@@ -287,11 +289,14 @@ set viminfo=%,'50,\"100,n~/.viminfo
 silent! colorscheme mymolokai
 "
 set number
-"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set undofile
 set diffopt=filler,vertical
 set backupcopy=yes
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
 "
 " don't unzip zip fieles
 "let g:loaded_zipPlugin= 1

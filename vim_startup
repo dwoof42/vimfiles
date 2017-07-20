@@ -3,13 +3,15 @@ set nocompatible
 "filetype off " vundle requires this
 set enc=utf-8
 "
-set directory=$HOME/.vim/backup
-set backupdir=$HOME/.vim/backup
-set undodir=$HOME/.vim/backup
+" set directory=$HOME/.vim/backup
+" set backupdir=$HOME/.vim/backup
+" set undodir=$HOME/.vim/backup
+set nobackup
+set noswapfile
+set noundofile
 
 if has('win32') || has('win64')
     set rtp+=$HOME/.vim
-    " set packpath+=$HOME/.vim/bundle
 endif
 
 "filetype plugin on
@@ -71,8 +73,6 @@ set ballooneval
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-" let g:syntastic_typescript_checkers=['tsuquyomi']
-let g:syntastic_typescript_checkers=['tslint']
 "
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
@@ -185,23 +185,9 @@ endif
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
 "
-"" tsuquyomi 
-let g:tsuquyomi_auto_open=1
-let g:tsuquyomi_debug=0
-let g:tsuquyomi_disable_quickfix=1
-let g:tsuquyomi_use_local_typescript=0
-let g:tsuquyomi_single_quote_import=1
-"nnoremap <leader>r :TsuRenameSymbol<CR>
-"nnoremap <leader>q :cclose<CR>:lclose<CR>
-"nnoremap <S-F12> :TsuReferences<CR>
-"nnoremap <leader>t :let g:tsuquyomi_disable_quickfix=!g:tsuquyomi_disable_quickfix<CR>
-nnoremap <leader>p :TsuImport<CR>
-"
 nnoremap <leader>A :%s/^\s*public \([a-zA-Z0-9]\+\)\(?\?\) \(\h\)\(\S\+\) /\l\3\4\2: \1/<cr>:%s/int{.*/number;/<cr>:%s/string{.*/string;/<cr>:%s/DateTime{.*/date;<cr>:%s/bool{.*/boolean;/<cr>
 nnoremap <leader>T :%s/^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$/<th ng-click="vm.pager.updateSort('\l\1\2')" class="clickable">\u\1\2</th>/<cr>
 nnoremap <leader>D :%s#^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$#<td>{{item.\l\1\2}}</td>#<cr>
-"" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
-"" nnoremap <leader>q :set g:tsuquyomi_disable_default_mappings!
 "
 "" a cheap way to compile the current module
 "" nnoremap <leader>p :python -c "import %"<cr>
@@ -284,7 +270,7 @@ endfunction
 "	:g/^/m0
 "endfunction
 
-set viminfo=%,'50,\"100,n~/.viminfo
+set viminfo=%,'50,\"100,n~/.vim/.viminfo
 
 :source $VIMRUNTIME/macros/matchit.vim
 
@@ -296,9 +282,7 @@ silent! colorscheme mymolokai
 set number
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
-set undofile
 set diffopt=filler,vertical
-set backupcopy=yes
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 

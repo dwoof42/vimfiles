@@ -16,6 +16,38 @@ endif
 
 "filetype plugin on
 "
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-vinegar'
+
+" Plug 'vim-scripts/taglist.vim'
+" Plug 'sjl/gundo.vim'
+
+Plug 'jlanzarotta/bufexplorer'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/AnsiEsc.vim'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+" formatting 
+
+if has("python3")
+    Plug 'SirVer/ultisnips'
+endif
+
+if has("unix")
+    Plug 'bitc/vim-hdevtools'
+    Plug 'Twinside/vim-hoogle'
+endif
+
+call plug#end()
+
+"
 "" " ultisnips setup
 let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"
@@ -41,18 +73,6 @@ if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 endif
 
-"
-" Syntastic setup
-function! FindCabalSandboxRoot()
-    return finddir('.cabal-sandbox', './;')
-endfunction
-
-function! FindCabalSandboxRootPackageConf()
-    return glob(FindCabalSandboxRoot().'/*-packages.conf.d')
-endfunction
-
-
-
 " For conceal markers, I like to keep it off
 if has('conceal')
   set conceallevel=0 concealcursor=niv
@@ -64,24 +84,14 @@ set ballooneval
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "
-"" if !exists("g:ycm_semantic_triggers")
-""    let g:ycm_semantic_triggers = {}
-"" endif
-"" let g:ycm_semantic_triggers['typescript'] = ['.']
-"
 
 let g:syntastic_jsx_checkers=['eslint']
 let g:syntastic_javascript_checkers=['eslint']
 " let g:syntastic_javascript_jslint_args = "--nomen"
-"
 let g:syntastic_html_checkers=['']
 " let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
 let g:syntastic_haskell_checkers=['hlint']
-"
 let g:syntastic_always_populate_loc_list=1
-"
-"" go settings
-"let g:go_fmt_fail_silently=1
 "
 let g:ctrlp_mruf_exclude = '.git/*|*.tmp|node_modules|jspm_components|coverage'
 "
@@ -99,88 +109,23 @@ function! Stab()
 	call SummarizeTabs()
 endfunction
 "
-"function! SummarizeTabs()
-"	try
-"		echohl ModeMsg
-"		echon 'tabstop='.&l:ts
-"		echon ' shiftwidth='.&l:sw
-"		echon ' softtabstop='.&l:sts
-"		if &l:et
-"			echon ' expandtab'
-"		else
-"			echon ' noexpandtab'
-"		endif
-"	finally
-"		echohl None
-"	endtry
-"endfunction
+function! SummarizeTabs()
+	try
+		echohl ModeMsg
+		echon 'tabstop='.&l:ts
+		echon ' shiftwidth='.&l:sw
+		echon ' softtabstop='.&l:sts
+		if &l:et
+			echon ' expandtab'
+		else
+			echon ' noexpandtab'
+		endif
+	finally
+		echohl None
+	endtry
+endfunction
 "
 "
-"" from vimrc_example
-"" Only do this part when compiled with support for autocommands
-if has("autocmd")
-	" enable our plugins
-	augroup filetypedetect
-		" au BufNewFile,BufRead,BufEnter *.aspx	setf aspnet
-		autocmd BufEnter,BufNewFile,BufRead *.vb setlocal ft=vbnet
-		autocmd BufEnter,BufNewFile,BufRead *.ps1 setlocal ft=ps1
-		" Xaml
-		autocmd BufEnter,BufRead,BufNewFile *.xaml        setlocal filetype=xml
-		autocmd BufEnter,BufRead,BufNewFile *.vssettings setlocal filetype=xml
-
-	augroup END
-
-"
-	augroup cprog
-		" Remove all cprog autocommands
-		au!
-
-		" When starting to edit a file:
-		"   For C and C++ files set formatting of comments and set C-indenting on.
-		"   For other files switch it off.
-		"   Don't change the order, it's important that the line with * comes first.
-		autocmd FileType *      set formatoptions=tcql nocindent comments&
-		autocmd FileType c,cpp  set formatoptions=croql nocindent comments=sr:/*,mb:*,el:*/,://
-
-        " autocmd FileType javascript let &formatprg="js-beautify -q -j -f -" 
-        " autocmd FileType json let &formatprg="js-beautify -q -j -f -" 
-        autocmd FileType javascript let &makeprg="gulp"
-        " autocmd FileType html let &formatprg="html-beautify -q -f -" 
-        autocmd FileType typescript JsPreTmpl html
-        autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
-	augroup END
-
-
-	augroup auindent	
-		au!
-		au BufEnter,BufRead,BufNewFile *.rb,erb,Gemfile,Guardfile,Vagrantfile   setlocal ts=2 sts=2 sw=2 expandtab
-		au BufEnter,BufRead,BufNewFile *.py,*.hs   setlocal ts=4 sts=4 sw=4 expandtab 
-		" au BufEnter,BufRead,BufNewFile *.cs,*.vb,*.xml,xaml setlocal ts=4 sts=4 sw=4 noexpandtab
-		" au BufEnter,BufRead,BufNewFile *.cshtml setlocal filetype=cshtml ts=4 sts=4 sw=4 noexpandtab
-		au BufNewFile,BufRead,BufEnter *.grm	setlocal ft=grm shellpipe= makeef=%:r.log errorformat=%m makeprg=goldbuilder_main\ \"%\"\ \"%:r.cgt\"\
-
-        au BufNewFile,BufRead,BufEnter *.xml setlocal equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
-        au BufNewFile,BufRead,BufEnter *.csproj,*.sln  setlocal filetype=xml equalprg=pretty\ -t\ xml formatprg=pretty\ -t\ xml     
-		au BufEnter,BufRead,BufNewFile *.hs,*.cabal   setlocal makeprg=buildhaskell
-        au BufEnter,BufRead,BufNewFile *.hs nnoremap <buffer> <LocalLeader>h :Hoogle<CR>
-
-		" au BufEnter,BufRead,BufNewFile *.html,*.xml set fp=tidy\ -qci\ -utf8
-
-	augroup END
-
-    augroup js
-        au!
-        au BufEnter,BufRead,BufNewFile *.js setlocal includeexpr=substitute(v:fname,'$','.js','g')
-        " au BufEnter,BufRead,BufNewFile *.ts setlocal suffixesadd=.ts ts=4 sts=4 sw=4 expandtab
-        " autocmd FileType typescript syn clear foldBraces
-    augroup END
-
-    augroup jsx
-        au!
-        autocmd! BufEnter  *.jsx  let b:syntastic_checkers=['eslint']
-    augroup END
-
-endif
 "
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
@@ -195,18 +140,6 @@ nnoremap <leader>D :%s#^\s*\([a-zA-Z]\)\([a-zA-Z0-9]\+\):.*$#<td>{{item.\l\1\2}}
 "" map the F1 key to escape in insert mode in case i hit it accidentally
 inoremap <F1> <Esc>
 "
-"" and I often want to execute the current script
-"if has("unix")
-"    noremap <leader>e :!./%<CR>
-"    nnoremap <leader>x :!chmod +x %<cr><cr>
-"    " write as root, but leave the Load prompt after
-"    cnoremap w!! w !sudo tee % >/dev/null<CR>
-"endif
-"
-"" xml format
-"" nnoremap <leader>x :%s/\(<[^>]*>\)/\n\1/g<CR>1G=G
-"
-"
 "" gitttish things
 cabbrev Gt Gtabedit!
 cabbrev Gm Gcommit -am 
@@ -220,8 +153,6 @@ nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>l :set list!<CR>
 
-nnoremap <leader>p :TsuImport<CR>
-" nnoremap <leader>p :%s#\([a-zA-Z_]\+\)#public string \1 {get;set;}#
 nnoremap <leader>d :let @* = expand("%:p:h")<CR>
 nnoremap <leader>R :let @* = substitute(expand("%"),"\\","/","g")<CR>
 " cnoremap sd :split %:h
@@ -256,23 +187,14 @@ filetype plugin indent on
 " Hide the mouse pointer while typing
 set mousehide
 
-" Append modeline after last line in buffer.
-" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
-" files.
-function! AppendModeline()
-	let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
-				\ &tabstop, &shiftwidth, &textwidth)
-	let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
-	call append(line("$"), l:modeline)
-endfunction
 
 "function! reverse()
 "	:g/^/m0
 "endfunction
 
-set viminfo=%,'50,\"100,n~/.vim/.viminfo
+set viminfo=%,'50,\"100,n~/.viminfo
 
-:source $VIMRUNTIME/macros/matchit.vim
+" :source $VIMRUNTIME/macros/matchit.vim
 
 "
 " silent! colorscheme sonofobsidian
@@ -280,6 +202,7 @@ set viminfo=%,'50,\"100,n~/.vim/.viminfo
 silent! colorscheme mymolokai
 "
 set number
+" todo check for fugitive
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set diffopt=filler,vertical

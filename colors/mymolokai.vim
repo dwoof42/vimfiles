@@ -10,14 +10,7 @@
 hi clear
 
 set background=dark
-if version > 580
-    " no guarantees for version 5.8 and below, but this makes it stop
-    " complaining
-    hi clear
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
+syntax reset
 let g:colors_name="mymolokai"
 
 if exists("g:molokai_original")

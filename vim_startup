@@ -127,6 +127,16 @@ endfunction
 "
 "
 "
+
+augroup haskell
+    " Remove all haskell autocommands
+    au!	
+    au BufNewFile,BufRead *.hs  set makeprg=stack\ build
+    au BufNewFile,BufRead *.cabal  set makeprg=stack\ build
+augroup END
+
+
+
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
 "

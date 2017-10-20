@@ -32,8 +32,15 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/AnsiEsc.vim'
 Plug 'mattn/emmet-vim'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
+
+
+Plug 'w0rp/ale'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-airline/vim-airline'
+"
+"
 " formatting 
 
 if has("python3")
@@ -159,7 +166,7 @@ nnoremap <leader>G :Gstatus<CR>
 nnoremap <leader>a :AnsiEsc<CR>
 nnoremap <leader>c :!clear<cr><cr>
 
-nnoremap <leader>s :SyntasticToggleMode<CR>
+" nnoremap <leader>s :SyntasticToggleMode<CR>
 
 nnoremap <leader>l :set list!<CR>
 
@@ -213,7 +220,7 @@ silent! colorscheme mymolokai
 "
 set number
 " todo check for fugitive
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
+" set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %B\ %P
 set laststatus=2
 set diffopt=filler,vertical
 

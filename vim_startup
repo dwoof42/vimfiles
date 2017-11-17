@@ -49,7 +49,7 @@ if has("python3")
 endif
 
 if has("unix")
-    Plug 'bitc/vim-hdevtools'
+	"    Plug 'bitc/vim-hdevtools'
     Plug 'Twinside/vim-hoogle'
 endif
 
@@ -226,6 +226,7 @@ set laststatus=2
 set diffopt=filler,vertical
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+set ts=4
 
 "
 " don't unzip zip fieles

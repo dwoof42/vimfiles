@@ -55,7 +55,6 @@ endif
 
 call plug#end()
 
-"
 "" " ultisnips setup
 let g:UltiSnipsNoPythonWarning="1"
 let g:UltiSnipsExpandTrigger="<c-e>"

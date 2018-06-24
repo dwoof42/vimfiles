@@ -1,0 +1,32 @@
+snippet compose
+version: '3.1'
+
+services:
+
+  ecoreweb:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.web
+    ports:
+      - 5000:5000
+  db:
+    build:
+      context: ./
+      dockerfile: Dockerfile.db
+    image: rabbitconsumer
+    restart: always
+    depends_on: 
+      - rabbit
+  # producer:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile.producer
+  #   image: rabbitproducer
+  #   restart: always
+  #   depends_on: 
+  #     - rabbit
+# volumes:
+  # rabbit-core:
+
+endsnippet
+

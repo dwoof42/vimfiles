@@ -1,0 +1,71 @@
+snippet netcore
+FROM microsoft/aspnetcore-build:2.0.0 as build-env
+
+WORKDIR /api
+
+COPY ./PetaPrac.sln ./PetaPrac.sln
+COPY ./PetaPrac.Web/PetaPrac.Web.csproj ./PetaPrac.Web/PetaPrac.Web.csproj
+
+RUN dotnet restore ./PetaPrac.Web/PetaPrac.Web.csproj
+
+COPY ./PetaPrac.Web ./PetaPrac.Web
+
+RUN dotnet build -f netcoreapp2.0 -c Release PetaPrac.Web/PetaPrac.Web.csproj
+# RUN dotnet test PetaPrac.Test/PetaPrac.Test.csproj
+
+RUN dotnet publish -f netcoreapp2.0 -r linux-x64 -c Release -o /publish PetaPrac.Web/PetaPrac.Web.csproj
+
+FROM microsoft/aspnetcore:2.0.0
+WORKDIR /publish
+
+COPY --from=build-env /publish .
+
+CMD ["dotnet", "/publish/PetaPrac.Web.dll"]
+
+
+
+
+
+/* @ngInject */
+export class FooController {
+
+	constructor ($log : ng.ILogService) {
+		$log.log('hello world');
+	}
+}
+
+export function FooDirective {
+
+	return {
+		restrict: 'EA',
+		controller: FooController,
+		controllerAs: 'vm',
+		template: require('./foo.html'),
+		link: function (scope, element, attrs) {
+		}
+	};
+}
+
+
+endsnippet
+
+snippet mssql
+
+FROM microsoft/mssql-server-linux:2017-CU4
+
+RUN mkdir /opt/mssql-scripts
+
+COPY ./install.sql /opt/mssql-scripts/install.sql
+
+ENV SA_PASSWORD=Passw0rd1
+ENV ACCEPT_EULA=Y
+ENV MSSQL_PID=Standard
+
+RUN /opt/mssql/bin/sqlservr & sleep 10 \
+    && /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'Passw0rd1' -i /opt/mssql-scripts/install.sql \
+    && pkill sqlservr 
+
+
+
+endsnippet
+

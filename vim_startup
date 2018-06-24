@@ -35,7 +35,8 @@ Plug 'mattn/emmet-vim'
 " Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
+Plug 'sgur/vim-editorconfig'
 
 Plug 'w0rp/ale'
 Plug 'sheerun/vim-polyglot'

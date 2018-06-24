@@ -86,7 +86,7 @@ if has('conceal')
   set conceallevel=0 concealcursor=niv
 endif
 
-set ballooneval
+" set ballooneval
 
 " let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
 "let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
@@ -227,6 +227,7 @@ set diffopt=filler,vertical
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 set ts=4
+set smartcase
 
 "
 " don't unzip zip fieles

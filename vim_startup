@@ -24,6 +24,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-vinegar'
+Plug 'machakann/vim-highlightedyank'
 
 " Plug 'vim-scripts/taglist.vim'
 " Plug 'sjl/gundo.vim'
@@ -39,22 +40,37 @@ Plug 'scrooloose/nerdtree'
 Plug 'sgur/vim-editorconfig'
 
 Plug 'w0rp/ale'
+" Plug 'neomake/neomake'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
-"
-"
+
+" Plug 'juliosueiras/cakebuild.vim'
+
+
 " formatting 
 
 if has("python3")
     Plug 'SirVer/ultisnips'
 endif
 
-if has("unix")
+if has('unix')
+
 	"    Plug 'bitc/vim-hdevtools'
     Plug 'Twinside/vim-hoogle'
+	Plug 'neovimhaskell/haskell-vim'
+    Plug 'parsonsmatt/intero-neovim'
+	Plug 'alx741/vim-hindent'
+
 endif
 
 call plug#end()
+
+if has('unix')
+    " neovim specific things, since 
+	tnoremap <Esc> <C-\><C-n>
+endif
+
+let g:hindent_on_save = 0
 
 "" " ultisnips setup
 let g:UltiSnipsNoPythonWarning="1"
@@ -81,26 +97,16 @@ if !exists('g:neocomplete#force_omni_input_patterns')
     let g:neocomplete#force_omni_input_patterns.typescript = '[^. *\t]\.\w*\|\h\w*::'
 endif
 
+
 " For conceal markers, I like to keep it off
 if has('conceal')
   set conceallevel=0 concealcursor=niv
 endif
 
-" set ballooneval
+if has('gui')
+  set balloonevalterm
+endif
 
-" let g:hdevtools_options = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
-"let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
-"let g:syntastic_haskell_hdevtools_args = '-g-ilib -g-isrc -g-i. -g-idist/build/autogen -g-Wall -g-package-conf='.FindCabalSandboxRootPackageConf()
-"
-
-let g:syntastic_jsx_checkers=['eslint']
-let g:syntastic_javascript_checkers=['eslint']
-" let g:syntastic_javascript_jslint_args = "--nomen"
-let g:syntastic_html_checkers=['']
-" let g:syntastic_haskell_checkers=['hdevtools', 'hlint']
-let g:syntastic_haskell_checkers=['hlint']
-let g:syntastic_always_populate_loc_list=1
-"
 let g:ctrlp_mruf_exclude = '.git/*|*.tmp|node_modules|jspm_components|coverage'
 "
 "
@@ -139,11 +145,9 @@ endfunction
 augroup haskell
     " Remove all haskell autocommands
     au!	
-    au BufNewFile,BufRead *.hs  set makeprg=stack\ build
+    au BufNewFile,BufRead *.hs  set makeprg=stack\ build ts=4 sw=4 sts=4 expandtab
     au BufNewFile,BufRead *.cabal  set makeprg=stack\ build
 augroup END
-
-
 
 nnoremap <leader>m :CtrlPMRU<CR>
 nnoremap <leader>y mmya}V%y
@@ -218,6 +222,10 @@ set viminfo=%,'50,\"100,n~/.viminfo
 " silent! colorscheme sonofobsidian
 " silent! colorscheme ragblue
 silent! colorscheme mymolokai
+
+hi TabLineFill ctermfg=8 ctermbg=8
+hi TabLine ctermfg=2 ctermbg=8
+hi TabLineSel ctermfg=3 ctermbg=8
 "
 set number
 " todo check for fugitive
